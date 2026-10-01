@@ -61,7 +61,7 @@ export default function ProductFilters({
     Boolean(currentOccasion);
 
   return (
-    <div className="space-y-6 mb-12 bg-cream-soft p-6 rounded-sm border border-gold/20 shadow-xs">
+    <div className="space-y-6 mb-12 bg-cream-soft p-6 rounded-xl border border-line shadow-xs">
       {/* Search and Occasion Inputs */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         {/* Search Input */}
@@ -79,7 +79,7 @@ export default function ProductFilters({
               value={searchVal}
               onChange={(e) => setSearchVal(e.target.value)}
               placeholder="e.g. Cardamom, Nutmeg, Varmala, Temple..."
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark placeholder-charcoal/40 focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark placeholder-charcoal/40 focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
             <button
               type="submit"
@@ -105,7 +105,7 @@ export default function ProductFilters({
               setOccasionVal(e.target.value);
               updateFilters({ occasion: e.target.value });
             }}
-            className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold cursor-pointer"
+            className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold cursor-pointer"
           >
             <option value="">All Occasions</option>
             <option value="Wedding">Wedding & Varmala</option>
@@ -122,7 +122,7 @@ export default function ProductFilters({
           {hasActiveFilters ? (
             <button
               onClick={handleClearFilters}
-              className="w-full py-2.5 px-3 text-xs uppercase tracking-wider text-charcoal/80 hover:text-red-700 border border-charcoal/20 hover:border-red-400 rounded-sm transition-colors cursor-pointer bg-cream"
+              className="w-full py-2.5 px-3 text-xs uppercase tracking-wider text-charcoal/80 hover:text-red-700 border border-charcoal/20 hover:border-red-400 rounded-xl transition-colors cursor-pointer bg-cream"
             >
               Reset Filters
             </button>
@@ -150,8 +150,8 @@ export default function ProductFilters({
                 disabled={isPending}
                 className={`text-xs px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   isSelected
-                    ? 'bg-emerald text-cream font-semibold border border-emerald shadow-xs'
-                    : 'bg-cream text-charcoal/80 hover:text-emerald border border-gold/25 hover:border-gold'
+                    ? 'bg-sage text-emerald-dark font-semibold border border-sage-line'
+                    : 'bg-cream text-charcoal/80 hover:text-emerald border border-line hover:border-gold'
                 }`}
               >
                 {cat}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -21,6 +21,12 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
+
+// Light theme only
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#F6F5F1",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jdivineecovalley.com"),
@@ -113,11 +119,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#FFFEFA] text-emerald font-sans antialiased selection:bg-gold selection:text-emerald-dark">
+      <body className="min-h-screen flex flex-col bg-canvas text-emerald font-sans antialiased selection:bg-gold selection:text-emerald-dark">
         <ModalProvider>
           <ParallaxScrollProgress />
           <Navbar />
-          <main className="flex-1 w-full bg-[#FFFEFA]">{children}</main>
+          <main className="flex-1 w-full bg-canvas">{children}</main>
           <Footer />
           <GlobalModals />
           <FloatingActionWidget />

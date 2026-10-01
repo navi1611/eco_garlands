@@ -41,8 +41,8 @@ export default function ProductSelector({
         name="productName"
         value={selectedProductName}
         onChange={handleChange}
-        className={`w-full bg-cream border rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold cursor-pointer ${
-          error ? 'border-red-400' : 'border-gold/30'
+        className={`w-full bg-cream border rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold cursor-pointer ${
+          error ? 'border-red-400' : 'border-line'
         }`}
       >
         <option value="">Select a garland or specify bespoke inquiry...</option>

@@ -5,7 +5,15 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import Garland3DWrapper from '@/components/home/Garland3DWrapper';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
+
+const STATS = [
+  { value: 'Natural', label: 'Cardamom, nuts & spices' },
+  { value: 'Handmade', label: 'Knotted by artisans' },
+  { value: 'Global', label: 'Export-ready packaging' },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,162 +22,115 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Parallax layers
-  const bgOrb1Y = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const bgOrb2Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const modelY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const particle1Y = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const particle2Y = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const particle3Y = useTransform(scrollYProgress, [0, 1], [0, -220]);
+  const modelY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-[#FFFEFA] pt-8 pb-16 lg:py-24 border-b border-gold/15 min-h-[90vh] flex flex-col justify-center"
+      className="relative overflow-hidden bg-canvas -mt-20 pt-32 pb-16 lg:pb-24 min-h-[92vh] flex flex-col justify-center"
     >
-      {/* Parallax Background Glowing Orbs */}
-      <motion.div
-        style={{ y: bgOrb1Y }}
-        className="absolute top-0 right-0 -mr-28 -mt-28 w-[500px] h-[500px] rounded-full bg-linear-to-br from-gold/15 via-gold/5 to-transparent blur-3xl pointer-events-none"
-      />
-      <motion.div
-        style={{ y: bgOrb2Y }}
-        className="absolute bottom-0 left-0 -ml-28 -mb-28 w-[500px] h-[500px] rounded-full bg-linear-to-tr from-botanical/15 via-emerald/5 to-transparent blur-3xl pointer-events-none"
-      />
+      {/* Split background: the right half is white, the left stays off-white */}
+      <div className="hidden lg:block absolute inset-y-0 right-0 w-[46%] bg-white border-l border-line" />
+      <div className="absolute inset-0 bg-grid mask-[radial-gradient(ellipse_at_30%_40%,black_20%,transparent_70%)] pointer-events-none" />
 
-      {/* Parallax Floating Spice & Botanical Badges */}
-      <motion.div
-        style={{ y: particle1Y }}
-        className="hidden md:flex absolute top-24 left-[12%] z-10 items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFEFA]/90 backdrop-blur-md border border-gold/30 shadow-md text-xs text-emerald-dark"
-      >
-        <span className="text-base">🌿</span>
-        <span className="font-serif font-medium">Whole Cardamom</span>
-      </motion.div>
-
-      <motion.div
-        style={{ y: particle2Y }}
-        className="hidden md:flex absolute bottom-28 left-[45%] z-10 items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFEFA]/90 backdrop-blur-md border border-gold/30 shadow-md text-xs text-emerald-dark"
-      >
-        <span className="text-base">✨</span>
-        <span className="font-serif font-medium">Sacred Indian Craft</span>
-      </motion.div>
-
-      <motion.div
-        style={{ y: particle3Y }}
-        className="hidden lg:flex absolute top-36 right-[8%] z-10 items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFEFA]/90 backdrop-blur-md border border-gold/30 shadow-md text-xs text-emerald-dark"
-      >
-        <Sparkles className="w-3.5 h-3.5 text-gold" />
-        <span className="font-serif font-medium">Worldwide Air Export</span>
-      </motion.div>
-
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Editorial Headline & Copy with Parallax */}
-          <motion.div style={{ y: textY }} className="lg:col-span-6 space-y-6 text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+      <Container className="relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Copy */}
+          <motion.div style={{ y: textY }} className="lg:col-span-6 lg:pr-8">
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/40 bg-gold/10 text-gold-dark shadow-xs"
+              transition={{ duration: 0.7, ease }}
+              className="eyebrow text-gold-dark"
             >
-              <span className="w-2 h-2 rounded-full bg-gold animate-ping" />
-              <span className="text-[11px] font-semibold tracking-[0.22em] uppercase">
-                J The Divine Eco Valley
-              </span>
-            </motion.div>
+              Handcrafted in India
+            </motion.span>
 
             <motion.h1
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-emerald-dark tracking-tight leading-[1.12]"
+              transition={{ duration: 0.9, delay: 0.08, ease }}
+              className="mt-7 font-serif text-[2.75rem] sm:text-6xl xl:text-[5.25rem] font-normal text-emerald-dark tracking-[-0.035em] leading-[1.02] text-balance"
             >
-              Nature Crafted.{' '}
-              <span className="italic font-light text-gold-dark relative">
-                Tradition Inspired.
-                <span className="absolute left-0 bottom-1 w-full h-[2px] bg-linear-to-r from-gold/0 via-gold/60 to-gold/0" />
-              </span>{' '}
-              Globally Delivered.
+              Nature crafted.{' '}
+              <span className="italic text-gold-dark">Tradition</span> inspired.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-base sm:text-lg text-charcoal/80 leading-relaxed max-w-xl font-normal"
+              transition={{ duration: 0.9, delay: 0.18, ease }}
+              className="mt-8 text-base sm:text-lg text-charcoal/65 leading-[1.75] max-w-lg text-pretty"
             >
-              Handcrafted natural garlands created from select green cardamom, nuts, aromatic spices
-              and carefully chosen botanical materials — uniting generational Indian craftsmanship
-              and revered rituals for celebrations across the world.
+              Natural garlands made from select green cardamom, nuts, aromatic spices and botanical
+              materials — generational Indian craftsmanship for celebrations around the world.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              transition={{ duration: 0.9, delay: 0.28, ease }}
+              className="mt-10 flex flex-wrap items-center gap-3"
             >
-              <Button href="/products" variant="secondary" size="lg">
-                Explore Our Garlands
+              <Button
+                href="/products"
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />}
+              >
+                Explore the Collection
               </Button>
-              <Button href="/quote" variant="primary" size="lg">
-                Get a Quote
+              <Button href="/quote" variant="secondary" size="lg">
+                Request a Quote
               </Button>
             </motion.div>
 
-            <motion.div
+            <motion.dl
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="pt-6 border-t border-gold/20 flex flex-wrap items-center gap-6 text-xs tracking-wider uppercase text-charcoal/65 font-medium"
+              transition={{ duration: 1, delay: 0.45 }}
+              className="mt-14 pt-8 border-t border-line grid grid-cols-3 gap-6 max-w-lg"
             >
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald" />
-                Crafted in India
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                Custom Dimensions
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald" />
-                Worldwide Transit
-              </span>
-            </motion.div>
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd className="font-serif text-xl sm:text-3xl text-emerald-dark tracking-[-0.02em]">
+                    {stat.value}
+                  </dd>
+                  <dd className="mt-1.5 text-xs text-charcoal/50 leading-snug">{stat.label}</dd>
+                </div>
+              ))}
+            </motion.dl>
           </motion.div>
 
-          {/* Right Column: 3D Interactive Cardamom Garland with Parallax Float */}
-          <motion.div style={{ y: modelY }} className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl p-2 bg-linear-to-b from-gold/15 via-[#FFFEFA]/50 to-gold/5 border border-gold/25 shadow-xl backdrop-blur-xs">
-              <Garland3DWrapper />
-            </div>
+          {/* 3D garland */}
+          <motion.div
+            style={{ y: modelY }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.2, ease }}
+            className="lg:col-span-6 relative"
+          >
+            <Garland3DWrapper />
           </motion.div>
         </div>
 
-        {/* Scroll To Explore Indicator */}
-        <motion.div
+        <motion.button
+          type="button"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="mt-12 flex flex-col items-center justify-center gap-2 text-charcoal/50 hover:text-emerald cursor-pointer transition-colors"
+          className="hidden lg:flex mt-6 items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-charcoal/45 hover:text-emerald-dark transition-colors cursor-pointer"
           onClick={() => {
-            window.scrollTo({
-              top: window.innerHeight * 0.85,
-              behavior: 'smooth',
-            });
+            window.scrollTo({ top: window.innerHeight * 0.9, behavior: 'smooth' });
           }}
         >
-          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-gold-dark">
-            Scroll to Explore Parallax Journey
+          <span className="w-9 h-9 rounded-full border border-line-strong flex items-center justify-center">
+            <ArrowDown className="w-3.5 h-3.5" />
           </span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-          >
-            <ArrowDown className="w-4 h-4 text-gold" />
-          </motion.div>
-        </motion.div>
+          Scroll
+        </motion.button>
       </Container>
     </section>
   );

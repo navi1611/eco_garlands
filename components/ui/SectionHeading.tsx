@@ -26,27 +26,21 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col max-w-3xl ${alignmentClasses[align]} ${className}`}>
       {badge && (
-        <span
-          className={`inline-block text-xs uppercase tracking-[0.25em] font-semibold mb-3 px-3 py-1 rounded-full border ${
-            isLight
-              ? 'text-gold border-gold/40 bg-gold/10'
-              : 'text-gold-dark border-gold/40 bg-gold/10'
-          }`}
-        >
+        <span className={`eyebrow mb-5 ${isLight ? 'text-gold-light' : 'text-gold-dark'}`}>
           {badge}
         </span>
       )}
       <h2
-        className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-[1.15] ${
-          isLight ? 'text-cream' : 'text-emerald-dark'
+        className={`font-serif text-[2rem] sm:text-5xl lg:text-[3.5rem] font-normal tracking-[-0.02em] leading-[1.08] text-balance ${
+          isLight ? 'text-white' : 'text-emerald-dark'
         }`}
       >
         {title}
       </h2>
       {subtitle && (
         <p
-          className={`mt-4 text-base sm:text-lg leading-relaxed ${
-            isLight ? 'text-cream/80' : 'text-charcoal/80'
+          className={`mt-6 text-base sm:text-[17px] leading-[1.75] max-w-2xl text-pretty ${
+            isLight ? 'text-white/70' : 'text-charcoal/65'
           }`}
         >
           {subtitle}

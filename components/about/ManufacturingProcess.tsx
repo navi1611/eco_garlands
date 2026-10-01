@@ -23,7 +23,7 @@ export default function ManufacturingProcess() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-cream border-t border-gold/15">
+    <section className="py-16 sm:py-20 bg-cream border-t border-line">
       <Container>
         <SectionHeading
           badge="Our Principles"
@@ -34,7 +34,7 @@ export default function ManufacturingProcess() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
           {commitments.map((item, idx) => (
             <FadeIn key={item.title} direction="up" delay={0.15 * idx}>
-              <div className="p-8 bg-cream-soft rounded-sm border border-gold/20 h-full flex flex-col justify-between shadow-xs">
+              <div className="p-8 bg-cream-soft rounded-xl border border-line h-full flex flex-col justify-between shadow-xs">
                 <div>
                   <span className="font-serif text-2xl text-gold font-bold">
                     0{idx + 1}
@@ -46,7 +46,7 @@ export default function ManufacturingProcess() {
                     {item.description}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-gold/15">
+                <div className="mt-6 pt-4 border-t border-line">
                   <span className="text-xs uppercase tracking-wider text-gold-dark font-medium">
                     J The Divine Eco Valley Standard
                   </span>

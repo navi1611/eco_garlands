@@ -22,11 +22,11 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Whole Green Cardamom',
     image_url:
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1764286954620-28029fbae9b6?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1608755728617-aefab37d2edd?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1764286954620-28029fbae9b6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1642255486695-a52c59347cfa?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1581600140682-d4e68c8cde32?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: true,
     active: true,
@@ -54,10 +54,10 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Grade-A Cardamom Pods',
     image_url:
-      'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1780318564577-fcd6a7454eeb?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1780318564577-fcd6a7454eeb?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1642255486695-a52c59347cfa?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: true,
     active: true,
@@ -85,10 +85,10 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Sun-dried Cardamom Pods',
     image_url:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1589463349208-95817c91f971?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1589463349208-95817c91f971?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: true,
     active: true,
@@ -116,9 +116,9 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Select Cardamom',
     image_url:
-      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1577083753695-e010191bacb5?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1577083753695-e010191bacb5?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: false,
     active: true,
@@ -146,9 +146,9 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Extra-Bold Green Cardamom',
     image_url:
-      'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1742844552193-2fd3425cd26d?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1742844552193-2fd3425cd26d?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: true,
     active: true,
@@ -176,9 +176,9 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Premium Cardamom Pods',
     image_url:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1764764138818-0b22ab4d4023?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1764764138818-0b22ab4d4023?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: true,
     active: true,
@@ -206,9 +206,9 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Pale Cardamom Pods',
     image_url:
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1754782915842-aa4fca6c203a?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1754782915842-aa4fca6c203a?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: false,
     active: true,
@@ -236,9 +236,9 @@ export const SAMPLE_PRODUCTS: Product[] = [
     ],
     base_material: 'Jumbo Green Cardamom',
     image_url:
-      'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1780126494113-29f0506d5e0a?auto=format&fit=crop&w=1200&q=80',
     gallery_images: [
-      'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1780126494113-29f0506d5e0a?auto=format&fit=crop&w=1200&q=80',
     ],
     featured: false,
     active: true,

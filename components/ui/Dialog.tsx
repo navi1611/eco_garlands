@@ -65,7 +65,7 @@ export default function Dialog({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-0 bg-emerald-dark/60 backdrop-blur-md"
+            className="fixed inset-0 bg-white/40 backdrop-blur-md"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -79,13 +79,13 @@ export default function Dialog({
             transition={{ type: 'spring', damping: 26, stiffness: 320 }}
             role="dialog"
             aria-modal="true"
-            className={`relative w-full ${maxWidthMap[maxWidth]} bg-[#FFFEFA] border border-gold/30 rounded-lg shadow-2xl overflow-hidden my-auto z-10 max-h-[92vh] flex flex-col`}
+            className={`relative w-full ${maxWidthMap[maxWidth]} bg-white border border-line rounded-lg shadow-2xl overflow-hidden my-auto z-10 max-h-[92vh] flex flex-col`}
           >
             {/* Header */}
-            <div className="relative px-6 py-5 sm:px-8 sm:py-6 border-b border-gold/20 bg-linear-to-r from-cream-soft via-[#FFFEFA] to-cream-soft flex items-start justify-between gap-4 shrink-0">
+            <div className="relative px-6 py-5 sm:px-8 sm:py-6 border-b border-line bg-linear-to-r from-cream-soft via-white to-cream-soft flex items-start justify-between gap-4 shrink-0">
               <div className="space-y-1 pr-6">
                 {badge && (
-                  <span className="inline-block text-[11px] uppercase tracking-widest font-semibold text-gold-dark px-2.5 py-0.5 rounded-full border border-gold/40 bg-gold/10">
+                  <span className="inline-block text-[11px] uppercase tracking-widest font-semibold text-gold-dark px-2.5 py-0.5 rounded-full border border-line-strong bg-gold/10">
                     {badge}
                   </span>
                 )}

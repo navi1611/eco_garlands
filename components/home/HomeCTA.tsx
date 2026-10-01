@@ -1,60 +1,49 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 
 export default function HomeCTA() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const glowScale = useTransform(scrollYProgress, [0, 1], [0.8, 1.3]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [30, -20]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 lg:py-28 bg-emerald-dark text-cream relative overflow-hidden border-t border-gold/30"
-    >
-      {/* Decorative ambient backdrop with parallax expansion */}
-      <motion.div
-        style={{ scale: glowScale }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gold/10 blur-3xl pointer-events-none"
-      />
+    <section className="py-24 lg:py-32 bg-canvas">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden rounded-[2rem] bg-white border border-line px-6 py-20 sm:px-16 lg:py-28 text-center"
+        >
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[420px] rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(19,59,45,0.07)_1px,transparent_0)] bg-size-[28px_28px] pointer-events-none" />
 
-      <Container size="narrow">
-        <motion.div style={{ y: contentY }} className="text-center space-y-8 relative z-10">
-          <div>
-            <span className="inline-block text-xs uppercase tracking-[0.25em] font-semibold text-gold mb-2 px-4 py-1.5 rounded-full border border-gold/40 bg-gold/10">
-              Start Your Request
-            </span>
+          <div className="relative max-w-2xl mx-auto">
+            <span className="eyebrow text-gold-dark">Start your request</span>
+            <h2 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-emerald-dark tracking-[-0.03em] leading-[1.05] text-balance">
+              Bring nature into your next celebration
+            </h2>
+            <p className="mt-6 text-base sm:text-lg text-charcoal/60 leading-[1.75] text-pretty">
+              Tell us about your occasion, quantity, dimensions and destination — our team will help
+              you find the right natural garland.
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Button
+                href="/quote"
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />}
+              >
+                Request a Quote
+              </Button>
+              <Button href="/products" variant="secondary" size="lg">
+                Explore Products
+              </Button>
+            </div>
           </div>
-
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-cream tracking-tight leading-[1.2]">
-            Bring Nature Into Your Next Celebration
-          </h2>
-
-          <p className="text-base sm:text-lg text-cream/80 max-w-xl mx-auto leading-relaxed font-normal">
-            Tell us what you are looking for and our team will help you find the
-            right natural garland for your occasion, quantity, custom dimensions, and destination.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Button href="/quote" variant="primary" size="lg">
-              Request a Quote
-            </Button>
-            <Button href="/products" variant="gold-outline" size="lg">
-              Explore Products
-            </Button>
-          </div>
-
-          <p className="text-xs uppercase tracking-widest text-gold-light/70 font-medium">
-            Handcrafted with devotion • Global dispatch coordination
-          </p>
         </motion.div>
       </Container>
     </section>

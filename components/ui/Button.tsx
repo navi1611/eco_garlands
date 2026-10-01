@@ -37,25 +37,25 @@ export default function Button({
   }
 
   const baseClasses =
-    'inline-flex items-center justify-center font-medium rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide cursor-pointer';
+    'group/btn inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50 disabled:cursor-not-allowed tracking-[0.01em] cursor-pointer whitespace-nowrap';
 
   const sizeClasses = {
-    sm: 'text-xs px-3.5 py-1.5 gap-1.5',
-    md: 'text-sm px-5 py-2.5 gap-2',
-    lg: 'text-base px-7 py-3.5 gap-2.5',
+    sm: 'text-xs h-9 px-4 gap-1.5',
+    md: 'text-sm h-11 px-6 gap-2',
+    lg: 'text-[15px] h-13 px-8 gap-2.5',
   };
 
   const variantClasses = {
     primary:
-      'bg-gold text-emerald-dark hover:bg-gold-light hover:shadow-md active:bg-gold-dark font-semibold',
+      'bg-sage text-emerald-dark border border-sage-line hover:bg-sage-strong hover:shadow-[0_10px_24px_-14px_rgba(19,59,45,0.3)]',
     secondary:
-      'bg-emerald text-[#FFFEFA] hover:bg-emerald-dark hover:shadow-md active:bg-charcoal',
+      'bg-white text-emerald-dark border border-line hover:border-emerald-dark/30 hover:shadow-[0_10px_24px_-14px_rgba(11,34,25,0.35)]',
     outline:
-      'border border-emerald text-emerald hover:bg-emerald hover:text-[#FFFEFA] active:bg-emerald-dark',
+      'border border-line-strong text-emerald-dark hover:bg-sage hover:border-sage-line',
     'gold-outline':
-      'border border-gold text-gold hover:bg-gold hover:text-emerald-dark active:bg-gold-light',
+      'border border-gold/60 text-gold-dark hover:bg-gold/10',
     ghost:
-      'text-emerald hover:bg-emerald/10 active:bg-emerald/20',
+      'text-emerald-dark hover:bg-emerald-dark/5',
   };
 
   const combinedClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;

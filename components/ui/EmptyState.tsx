@@ -19,7 +19,7 @@ export default function EmptyState({
   icon,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center text-center p-12 my-8 border border-dashed border-botanical/40 rounded-sm bg-cream-soft">
+    <div className="flex flex-col items-center justify-center text-center p-12 my-8 border border-dashed border-botanical/40 rounded-xl bg-cream-soft">
       <div className="w-16 h-16 mb-4 rounded-full bg-cream flex items-center justify-center text-botanical">
         {icon || (
           <svg

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquareText, FileText, Sparkles, X, ChevronUp } from 'lucide-react';
+import { MessageSquareText, FileText, MessageCircle, X, ChevronUp } from 'lucide-react';
 import { useModal } from '@/components/modal/ModalContext';
 
 export default function FloatingActionWidget() {
@@ -33,23 +33,20 @@ export default function FloatingActionWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.92 }}
             transition={{ duration: 0.2 }}
-            className="flex flex-col gap-2 p-2 bg-[#FFFEFA]/95 backdrop-blur-md border border-gold/30 rounded-xl shadow-xl mb-1 w-52"
+            className="flex flex-col gap-1 p-2 bg-white/95 backdrop-blur-xl border border-line rounded-2xl shadow-[var(--shadow-lift)] mb-1 w-60"
           >
-            <div className="px-3 py-1.5 border-b border-gold/15">
-              <span className="text-[10px] uppercase tracking-widest text-gold-dark font-semibold block">
-                Quick Inquiries
-              </span>
-              <span className="text-xs text-emerald-dark font-medium">
-                Open in Dialog
+            <div className="px-3 pt-2 pb-2.5 border-b border-line">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45 font-medium block">
+                How can we help?
               </span>
             </div>
 
             <button
               type="button"
               onClick={handleOpenQuote}
-              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-emerald-dark hover:bg-gold/15 hover:text-emerald rounded-lg transition-colors text-left"
+              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-emerald-dark hover:bg-canvas rounded-xl transition-colors text-left"
             >
-              <div className="w-7 h-7 rounded-full bg-gold/20 flex items-center justify-center text-gold-dark">
+              <div className="w-8 h-8 rounded-full bg-canvas border border-line flex items-center justify-center text-emerald-dark">
                 <FileText className="w-3.5 h-3.5" />
               </div>
               <div>
@@ -61,9 +58,9 @@ export default function FloatingActionWidget() {
             <button
               type="button"
               onClick={handleOpenContact}
-              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-emerald-dark hover:bg-gold/15 hover:text-emerald rounded-lg transition-colors text-left"
+              className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-emerald-dark hover:bg-canvas rounded-xl transition-colors text-left"
             >
-              <div className="w-7 h-7 rounded-full bg-emerald/15 flex items-center justify-center text-emerald">
+              <div className="w-8 h-8 rounded-full bg-canvas border border-line flex items-center justify-center text-emerald-dark">
                 <MessageSquareText className="w-3.5 h-3.5" />
               </div>
               <div>
@@ -75,7 +72,7 @@ export default function FloatingActionWidget() {
             <button
               type="button"
               onClick={scrollToTop}
-              className="flex items-center justify-between px-3 py-1.5 text-[11px] text-charcoal/60 hover:text-emerald transition-colors border-t border-gold/15 pt-2"
+              className="flex items-center justify-between px-3 py-1.5 text-[11px] text-charcoal/60 hover:text-emerald transition-colors border-t border-line pt-2.5 mt-1"
             >
               <span>Scroll to top</span>
               <ChevronUp className="w-3.5 h-3.5" />
@@ -90,16 +87,15 @@ export default function FloatingActionWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-3 bg-linear-to-r from-emerald-dark via-emerald to-emerald-dark text-[#FFFEFA] rounded-full shadow-lg border border-gold/40 hover:border-gold hover:shadow-gold/20 transition-all cursor-pointer group"
+        className="flex items-center gap-2.5 pl-5 pr-2 h-12 bg-white text-emerald-dark border border-line rounded-full shadow-[0_12px_32px_-14px_rgba(19,59,45,0.35)] hover:border-sage-line transition-colors cursor-pointer"
         aria-label="Open contact and quote options"
       >
-        <span className="w-2 h-2 rounded-full bg-gold animate-ping" />
-        <span className="text-xs uppercase tracking-widest font-semibold text-gold-light group-hover:text-gold transition-colors">
+        <span className="text-[13px] font-medium tracking-wide">
           {isOpen ? 'Close' : 'Enquire'}
         </span>
-        <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold-light ml-0.5">
-          {isOpen ? <X className="w-3.5 h-3.5" /> : <Sparkles className="w-3.5 h-3.5" />}
-        </div>
+        <span className="w-8 h-8 rounded-full bg-sage flex items-center justify-center">
+          {isOpen ? <X className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
+        </span>
       </motion.button>
     </div>
   );

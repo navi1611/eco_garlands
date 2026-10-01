@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
+import { ArrowUpRight } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -34,65 +35,66 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 w-full ${
+      className={`sticky top-0 z-40 w-full transition-all duration-500 ${
         isScrolled
-          ? 'bg-cream-soft/95 backdrop-blur-md shadow-xs border-b border-gold/20 py-3'
-          : 'bg-cream/90 backdrop-blur-xs py-5'
+          ? 'bg-white/80 backdrop-blur-xl backdrop-saturate-150 border-b border-line/80 py-3'
+          : 'bg-canvas/0 border-b border-transparent py-5'
       }`}
     >
       <Container>
-        <div className="flex items-center justify-between">
-          {/* Brand Logo / Monogram */}
+        <div className="flex items-center justify-between gap-6">
+          {/* Brand */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-gold rounded-xs"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald/30 rounded-md"
           >
-            <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center bg-cream-soft group-hover:border-gold transition-colors">
-              <span className="font-serif text-lg text-gold font-bold tracking-wider">
-                J
-              </span>
+            <div className="w-9 h-9 rounded-full bg-sage border border-sage-line flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <span className="font-serif text-base text-emerald-dark leading-none">J</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-lg sm:text-xl font-semibold tracking-wide text-emerald-dark leading-tight group-hover:text-emerald transition-colors">
+              <span className="font-serif text-[17px] sm:text-lg tracking-[-0.01em] text-emerald-dark leading-tight">
                 J The Divine Eco Valley
               </span>
-              <span className="text-[10px] tracking-[0.2em] uppercase text-gold font-medium">
-                Natural Botanical Garlands
+              <span className="text-[9.5px] tracking-[0.28em] uppercase text-charcoal/50 font-medium mt-0.5">
+                Botanical Garlands
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8">
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center gap-1 rounded-full p-1">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm tracking-wide font-medium transition-all duration-200 relative py-1 focus:outline-none focus:ring-1 focus:ring-gold rounded-xs ${
+                  className={`relative px-4 py-2 text-[13.5px] rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald/30 ${
                     isActive
-                      ? 'text-emerald-dark font-semibold'
-                      : 'text-emerald/80 hover:text-emerald'
+                      ? 'text-emerald-dark font-medium'
+                      : 'text-charcoal/60 hover:text-emerald-dark'
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold rounded-full" />
+                    <span className="absolute left-1/2 -translate-x-1/2 bottom-0.5 w-1 h-1 rounded-full bg-gold" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Action / Quote Button */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button href="/quote" variant="primary" size="md">
+          <div className="hidden md:flex items-center">
+            <Button
+              href="/quote"
+              variant="primary"
+              size="sm"
+              icon={<ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />}
+            >
               Get a Quote
             </Button>
           </div>
 
-          {/* Mobile Menu trigger */}
           <MobileMenu links={NAV_LINKS} />
         </div>
       </Container>

@@ -1,8 +1,21 @@
+import {
+  ConciergeBell,
+  Flame,
+  Flower2,
+  Gem,
+  Gift,
+  Globe2,
+  Home,
+  Landmark,
+  PartyPopper,
+  type LucideIcon,
+} from 'lucide-react';
+
 export interface ApplicationItem {
   title: string;
   tagline: string;
   description: string;
-  icon: string;
+  icon: LucideIcon;
   href: string;
 }
 
@@ -12,7 +25,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Ceremonial & Matrimonial Vows',
     description:
       'Worn during the auspicious varmala exchange, creating fragrant and timeless photo memories.',
-    icon: '💍',
+    icon: Gem,
     href: '/products?category=Weddings',
   },
   {
@@ -20,7 +33,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Temple Sanctums & Rituals',
     description:
       'Custom woven for deity alankaram, homams, and sanctum installations with sacred adherence.',
-    icon: '🪔',
+    icon: Flame,
     href: '/products?category=Religious+%26+Spiritual',
   },
   {
@@ -28,7 +41,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Cultural & Seasonal Joy',
     description:
       'Adorning festival stages and community celebrations during Diwali, Pongal, and festive seasons.',
-    icon: '✨',
+    icon: PartyPopper,
     href: '/products?category=Festivals+%26+Cultural',
   },
   {
@@ -36,7 +49,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Organic Living Spaces',
     description:
       'Entryway portals and wall hangings imparting natural botanical character and natural scent.',
-    icon: '🏡',
+    icon: Home,
     href: '/products?category=Home+%26+Interior',
   },
   {
@@ -44,7 +57,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Serene Pooja Altars',
     description:
       'Framing meditation niches and home pooja mandirs with serene, enduring spice weaves.',
-    icon: '🌸',
+    icon: Flower2,
     href: '/products?category=Home+%26+Interior',
   },
   {
@@ -52,7 +65,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Cultural Summits & Celebrations',
     description:
       'Elevating inaugural ceremonies, auspicious lamp-lighting events, and traditional stage decor.',
-    icon: '🏛️',
+    icon: Landmark,
     href: '/products?category=Hospitality',
   },
   {
@@ -60,7 +73,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Resorts & VIP Receptions',
     description:
       'Welcoming guests and dignitaries with authentic Indian graciousness and botanical splendor.',
-    icon: '🌿',
+    icon: ConciergeBell,
     href: '/products?category=Hospitality',
   },
   {
@@ -68,7 +81,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Heirloom Tokens & Keepsakes',
     description:
       'Presented in bespoke export-ready presentation boxes for celebratory personal or corporate tokens.',
-    icon: '🎁',
+    icon: Gift,
     href: '/products?category=Gifting',
   },
   {
@@ -76,7 +89,7 @@ export const APPLICATION_LIST: ApplicationItem[] = [
     tagline: 'Global Diaspora Traditions',
     description:
       'Bringing authentic regional craftsmanship to diaspora communities and heritage festivals worldwide.',
-    icon: '🌏',
+    icon: Globe2,
     href: '/products',
   },
 ];

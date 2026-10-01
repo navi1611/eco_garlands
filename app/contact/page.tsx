@@ -69,7 +69,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#FFFEFA] min-h-screen">
+    <div className="bg-white min-h-screen">
       <PageContainer
         badge="Direct Communication"
         title="Contact J The Divine Eco Valley"
@@ -77,7 +77,7 @@ export default function ContactPage() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Official Contact Channels */}
-          <div className="lg:col-span-5 space-y-8 bg-[#F9F7EE] p-8 sm:p-10 rounded-xl border border-gold/25 shadow-xs">
+          <div className="lg:col-span-5 space-y-8 bg-canvas p-8 sm:p-10 rounded-xl border border-line shadow-xs">
             <div>
               <span className="text-xs uppercase tracking-widest text-gold-dark font-medium block">
                 Brand Headquarters
@@ -90,7 +90,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="space-y-6 pt-4 border-t border-gold/20">
+            <div className="space-y-6 pt-4 border-t border-line">
               <div>
                 <span className="text-xs uppercase tracking-wider text-charcoal/60 font-medium block">
                   Workshop & Registered Address
@@ -140,7 +140,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-gold/20 space-y-3">
+            <div className="pt-4 border-t border-line space-y-3">
               <span className="text-[11px] uppercase tracking-wider text-charcoal/60 block">
                 Instant Dialog Forms:
               </span>
@@ -166,7 +166,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right Column: Direct Message Form */}
-          <div className="lg:col-span-7 bg-[#F9F7EE] p-8 sm:p-10 rounded-xl border border-gold/25 shadow-xs">
+          <div className="lg:col-span-7 bg-canvas p-8 sm:p-10 rounded-xl border border-line shadow-xs">
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-serif text-2xl font-medium text-emerald-dark">
                 Send an Enquiry
@@ -185,7 +185,7 @@ export default function ContactPage() {
             </p>
 
             {isSuccess ? (
-              <div className="p-8 text-center bg-[#FFFEFA] rounded-lg border border-gold/30 space-y-4">
+              <div className="p-8 text-center bg-white rounded-lg border border-line space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald mx-auto" />
                 <h4 className="font-serif text-2xl font-medium text-emerald-dark">
                   Message Sent Successfully
@@ -194,7 +194,7 @@ export default function ContactPage() {
                   Thank you for reaching out to J The Divine Eco Valley. Our workshop coordinators will contact you shortly.
                 </p>
                 {referenceId && (
-                  <div className="inline-block px-3 py-1 bg-cream-soft rounded text-xs font-mono text-emerald-dark border border-gold/30">
+                  <div className="inline-block px-3 py-1 bg-cream-soft rounded text-xs font-mono text-emerald-dark border border-line">
                     Reference: {referenceId}
                   </div>
                 )}
@@ -207,7 +207,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 {serverError && (
-                  <div className="p-3.5 rounded-sm bg-red-50 border border-red-200 text-red-800 text-xs">
+                  <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs">
                     {serverError}
                   </div>
                 )}
@@ -228,7 +228,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="e.g. Ananya Rao"
-                      className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                      className="w-full bg-white border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
                     />
                     {errors.name && (
                       <p className="text-[11px] text-red-600 mt-1">{errors.name[0]}</p>
@@ -249,7 +249,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="e.g. ananya@example.com"
-                      className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                      className="w-full bg-white border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
                     />
                     {errors.email && (
                       <p className="text-[11px] text-red-600 mt-1">{errors.email[0]}</p>
@@ -272,7 +272,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     placeholder="e.g. Wedding Varmala Availability / International Export Inquiry"
-                    className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                    className="w-full bg-white border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
                   />
                   {errors.subject && (
                     <p className="text-[11px] text-red-600 mt-1">{errors.subject[0]}</p>
@@ -294,7 +294,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Please write your questions or details..."
-                    className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                    className="w-full bg-white border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
                   />
                   {errors.message && (
                     <p className="text-[11px] text-red-600 mt-1">{errors.message[0]}</p>

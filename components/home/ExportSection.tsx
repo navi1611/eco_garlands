@@ -1,119 +1,101 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Plane, ShieldCheck, Package } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Button from '@/components/ui/Button';
-import { Check, Plane, Globe2, ShieldCheck, Box } from 'lucide-react';
+
+const FEATURES = [
+  {
+    icon: Package,
+    title: 'Moisture-controlled packaging',
+    desc: 'Rigid packaging shields natural pods and preserves form during long-distance transit.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Phytosanitary focus',
+    desc: 'Thoroughly cleaned, sun-cured and sorted for international border compliance.',
+  },
+  {
+    icon: Plane,
+    title: 'Customs coordination',
+    desc: 'Clear documentation and air freight dispatch for event dates and retail orders.',
+  },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ExportSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const mapY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 lg:py-28 bg-[#F9F7EE] border-b border-gold/15 overflow-hidden relative"
-    >
+    <section className="py-24 lg:py-36 bg-white border-y border-line">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Editorial Content with Parallax */}
-          <motion.div style={{ y: textY }} className="lg:col-span-5 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
             <SectionHeading
               align="left"
               badge="International Delivery"
-              title="From Our Craft to the World"
-              subtitle="Our handcrafted natural garlands are created with an international outlook, with product consistency, packaging and export requirements considered throughout the process."
+              title="From our craft to the world"
+              subtitle="Every garland is made with an international outlook — consistency, packaging and export requirements are considered throughout the process."
             />
 
-            <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-[#FFFEFA] border border-gold/20 shadow-2xs">
-                <div className="w-9 h-9 rounded-full bg-emerald/10 text-emerald flex items-center justify-center shrink-0 border border-emerald/20">
-                  <Box className="w-4 h-4 text-emerald" />
-                </div>
-                <div>
-                  <h4 className="font-serif text-base text-emerald-dark font-medium">
-                    Rigid Moisture-Controlled Packaging
-                  </h4>
-                  <p className="text-xs text-charcoal/70 mt-0.5 leading-relaxed">
-                    Shields natural pods and preserves structural form during long-distance transit.
-                  </p>
-                </div>
-              </div>
+            <ul className="mt-12 space-y-8">
+              {FEATURES.map((f) => {
+                const Icon = f.icon;
+                return (
+                  <li key={f.title} className="flex items-start gap-5">
+                    <span className="w-11 h-11 rounded-full border border-line flex items-center justify-center shrink-0 text-emerald">
+                      <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <h4 className="font-medium text-[15px] text-emerald-dark">{f.title}</h4>
+                      <p className="mt-1 text-sm text-charcoal/55 leading-[1.7]">{f.desc}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
 
-              <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-[#FFFEFA] border border-gold/20 shadow-2xs">
-                <div className="w-9 h-9 rounded-full bg-emerald/10 text-emerald flex items-center justify-center shrink-0 border border-emerald/20">
-                  <ShieldCheck className="w-4 h-4 text-emerald" />
-                </div>
-                <div>
-                  <h4 className="font-serif text-base text-emerald-dark font-medium">
-                    Phytosanitary & Cleanliness Focus
-                  </h4>
-                  <p className="text-xs text-charcoal/70 mt-0.5 leading-relaxed">
-                    Thoroughly cleaned, sun-cured, and sorted for international border compliance.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-[#FFFEFA] border border-gold/20 shadow-2xs">
-                <div className="w-9 h-9 rounded-full bg-emerald/10 text-emerald flex items-center justify-center shrink-0 border border-emerald/20">
-                  <Plane className="w-4 h-4 text-emerald" />
-                </div>
-                <div>
-                  <h4 className="font-serif text-base text-emerald-dark font-medium">
-                    Customs & Commercial Coordination
-                  </h4>
-                  <p className="text-xs text-charcoal/70 mt-0.5 leading-relaxed">
-                    Clear documentation and air freight dispatch for event dates and retail orders.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-3 flex flex-wrap items-center gap-4">
-              <Button href="/quote" variant="primary" size="md">
-                Inquire for Export
+            <div className="mt-12">
+              <Button
+                href="/quote"
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />}
+              >
+                Enquire for Export
               </Button>
-              <div className="text-xs uppercase tracking-[0.2em] text-gold-dark font-semibold px-3.5 py-2 rounded-full border border-gold/40 bg-gold/10 flex items-center gap-2">
-                <Globe2 className="w-3.5 h-3.5" />
-                <span>Made in India • Global Reach</span>
-              </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Animated World Map with Parallax */}
-          <motion.div style={{ y: mapY }} className="lg:col-span-7">
-            <div className="relative p-6 sm:p-8 rounded-2xl bg-linear-to-b from-emerald-dark via-[#0d3326] to-emerald-dark text-cream border border-gold/30 shadow-2xl overflow-hidden">
-              {/* Subtle map header */}
-              <div className="flex items-center justify-between pb-4 border-b border-gold/20 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-gold animate-ping" />
-                  <span className="text-xs uppercase tracking-widest text-gold font-semibold">
-                    Origin: India
-                  </span>
-                </div>
-                <span className="text-[11px] uppercase tracking-wider text-cream/70 font-medium">
-                  Trans-Continental Botanical Transit
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 1, ease }}
+            className="lg:col-span-7"
+          >
+            <div className="relative p-6 sm:p-10 rounded-3xl bg-canvas border border-line text-emerald-dark overflow-hidden shadow-[var(--shadow-lift)]">
+              <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+              <div className="relative flex items-center justify-between pb-6 border-b border-line mb-6">
+                <span className="text-[11px] uppercase tracking-[0.24em] text-gold-dark">
+                  Origin — India
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.2em] text-charcoal/45">
+                  Global dispatch
                 </span>
               </div>
 
-              {/* Animated SVG Graphic with Curving Emerald & Gold Flight Paths */}
               <div className="relative w-full aspect-16/10">
                 <svg
                   viewBox="0 0 800 480"
-                  className="w-full h-full text-botanical/30"
+                  className="w-full h-full"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   {/* Simplified continent outlines */}
-                  <g fill="#164A36" stroke="#235F47" strokeWidth="0.8">
+                  <g fill="#E4E8DF" stroke="#CDD5C7" strokeWidth="0.8">
                     {/* North America */}
                     <path d="M120 100 Q180 80 220 120 Q240 180 200 240 Q160 220 130 180 Z" opacity="0.6" />
                     {/* South America */}
@@ -131,75 +113,71 @@ export default function ExportSection() {
                   {/* Flight paths */}
                   <path
                     d="M540 210 Q460 120 400 110"
-                    stroke="#C9A227"
+                    stroke="#A9884F"
                     strokeWidth="2"
                     strokeDasharray="4 4"
-                    className="animate-pulse"
+                   
                   />
                   <path
                     d="M540 210 Q320 80 180 150"
-                    stroke="#C9A227"
+                    stroke="#A9884F"
                     strokeWidth="2"
                     strokeDasharray="4 4"
                   />
                   <path
                     d="M540 210 Q490 200 460 190"
-                    stroke="#6F8F72"
+                    stroke="#5B7765"
                     strokeWidth="2.2"
                   />
                   <path
                     d="M540 210 Q610 240 660 260"
-                    stroke="#C9A227"
+                    stroke="#A9884F"
                     strokeWidth="2"
                     strokeDasharray="4 4"
                   />
                   <path
                     d="M540 210 Q610 280 660 350"
-                    stroke="#6F8F72"
+                    stroke="#5B7765"
                     strokeWidth="2"
                     strokeDasharray="4 4"
                   />
 
                   {/* Origin Hub: India */}
-                  <circle cx="540" cy="210" r="8" fill="#C9A227" />
-                  <circle cx="540" cy="210" r="16" stroke="#C9A227" strokeWidth="1.5" opacity="0.6" className="animate-ping origin-center" />
+                  <circle cx="540" cy="210" r="8" fill="#A9884F" />
+                  <circle cx="540" cy="210" r="16" stroke="#A9884F" strokeWidth="1.5" opacity="0.5" />
 
                   {/* Destination Nodes */}
-                  <circle cx="400" cy="110" r="5" fill="#FFFDF5" />
-                  <circle cx="180" cy="150" r="5" fill="#FFFDF5" />
-                  <circle cx="460" cy="190" r="4.5" fill="#FFFDF5" />
-                  <circle cx="660" cy="260" r="4.5" fill="#FFFDF5" />
-                  <circle cx="660" cy="350" r="5" fill="#FFFDF5" />
+                  <circle cx="400" cy="110" r="5" fill="#133B2D" />
+                  <circle cx="180" cy="150" r="5" fill="#133B2D" />
+                  <circle cx="460" cy="190" r="4.5" fill="#133B2D" />
+                  <circle cx="660" cy="260" r="4.5" fill="#133B2D" />
+                  <circle cx="660" cy="350" r="5" fill="#133B2D" />
 
                   {/* Hub label */}
-                  <text x="552" y="215" fill="#C9A227" fontSize="12" fontFamily="serif" fontWeight="bold">
-                    INDIA (Workshop & Export Desk)
+                  <text x="552" y="215" fill="#A9884F" fontSize="12" fontFamily="serif" letterSpacing="2">
+                    INDIA
                   </text>
-                  <text x="186" y="145" fill="#FFFDF5" fontSize="10" fontFamily="sans-serif">
+                  <text x="186" y="145" fill="#133B2D" fontSize="10" fontFamily="sans-serif">
                     USA / Canada
                   </text>
-                  <text x="406" y="105" fill="#FFFDF5" fontSize="10" fontFamily="sans-serif">
+                  <text x="406" y="105" fill="#133B2D" fontSize="10" fontFamily="sans-serif">
                     UK / Europe
                   </text>
-                  <text x="466" y="185" fill="#FFFDF5" fontSize="10" fontFamily="sans-serif">
+                  <text x="466" y="185" fill="#133B2D" fontSize="10" fontFamily="sans-serif">
                     UAE / GCC
                   </text>
-                  <text x="666" y="255" fill="#FFFDF5" fontSize="10" fontFamily="sans-serif">
+                  <text x="666" y="255" fill="#133B2D" fontSize="10" fontFamily="sans-serif">
                     Singapore / SE Asia
                   </text>
-                  <text x="666" y="345" fill="#FFFDF5" fontSize="10" fontFamily="sans-serif">
+                  <text x="666" y="345" fill="#133B2D" fontSize="10" fontFamily="sans-serif">
                     Australia
                   </text>
                 </svg>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gold/20 flex flex-wrap items-center justify-between text-xs text-cream/80">
-                <span className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-gold" /> Standard & Express Air Consignments
-                </span>
-                <span className="text-gold font-medium">
-                  Phytosanitary Export Compliant
-                </span>
+              <div className="relative mt-6 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-3 text-xs text-charcoal/55">
+                <span>Standard & express air consignments</span>
+                <span className="text-gold-dark">Phytosanitary export compliant</span>
               </div>
             </div>
           </motion.div>

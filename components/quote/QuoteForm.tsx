@@ -119,18 +119,18 @@ export default function QuoteForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-cream-soft border border-gold/30 rounded-sm p-6 sm:p-10 lg:p-12 shadow-sm space-y-8"
+      className="bg-cream-soft border border-line rounded-xl p-6 sm:p-10 lg:p-12 shadow-sm space-y-8"
       noValidate
     >
       {serverError && (
-        <div className="p-4 rounded-xs bg-red-50 border border-red-300 text-red-800 text-sm">
+        <div className="p-4 rounded-lg bg-red-50 border border-red-300 text-red-800 text-sm">
           {serverError}
         </div>
       )}
 
       {/* Section 1: Contact & Entity Information */}
       <div className="space-y-4">
-        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-gold/20 pb-2">
+        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-line pb-2">
           1. Contact & Organization Details
         </h3>
 
@@ -149,7 +149,7 @@ export default function QuoteForm({
               value={formData.fullName}
               onChange={handleInputChange}
               placeholder="e.g. Priyanshu Sharma"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -167,7 +167,7 @@ export default function QuoteForm({
               value={formData.companyName}
               onChange={handleInputChange}
               placeholder="e.g. Vedic Heritage Imports / Private"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -185,7 +185,7 @@ export default function QuoteForm({
               value={formData.email}
               onChange={handleInputChange}
               placeholder="e.g. priyanshu@example.com"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -203,7 +203,7 @@ export default function QuoteForm({
               value={formData.phone}
               onChange={handleInputChange}
               placeholder="e.g. +91 98765 43210 / +1 (555) 019-2831"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -223,7 +223,7 @@ export default function QuoteForm({
                 value={formData.country}
                 onChange={handleInputChange}
                 placeholder="e.g. India, United States, United Kingdom, UAE, Singapore, Canada..."
-                className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
               />
             </FormField>
           </div>
@@ -232,7 +232,7 @@ export default function QuoteForm({
 
       {/* Section 2: Garland Specifications */}
       <div className="space-y-4">
-        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-gold/20 pb-2">
+        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-line pb-2">
           2. Garland Requirements & Intended Use
         </h3>
 
@@ -261,7 +261,7 @@ export default function QuoteForm({
               value={formData.quantity}
               onChange={handleInputChange}
               placeholder="e.g. 2 pairs, 50 units, 100 pieces"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -279,7 +279,7 @@ export default function QuoteForm({
               value={formData.intendedUse}
               onChange={handleInputChange}
               placeholder="e.g. Wedding Varmala, Temple Deity, Resort Entrance, Gifting"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
         </div>
@@ -287,7 +287,7 @@ export default function QuoteForm({
 
       {/* Section 3: Delivery & Customization Specifications (Optional) */}
       <div className="space-y-4">
-        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-gold/20 pb-2">
+        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-line pb-2">
           3. Logistics & Customization (Optional)
         </h3>
 
@@ -303,7 +303,7 @@ export default function QuoteForm({
               type="date"
               value={formData.deliveryDate || ''}
               onChange={handleInputChange}
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -319,7 +319,7 @@ export default function QuoteForm({
               value={formData.targetMarket || ''}
               onChange={handleInputChange}
               placeholder="e.g. North America, GCC / Gulf, Domestic India, Europe"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -336,7 +336,7 @@ export default function QuoteForm({
               value={formData.customizationRequirements || ''}
               onChange={handleInputChange}
               placeholder="e.g. 5 feet length, extra gold thread rosettes"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
 
@@ -353,7 +353,7 @@ export default function QuoteForm({
               value={formData.packagingRequirements || ''}
               onChange={handleInputChange}
               placeholder="e.g. Individual velvet keepsake boxes"
-              className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
           </FormField>
         </div>
@@ -361,7 +361,7 @@ export default function QuoteForm({
 
       {/* Section 4: Project Message */}
       <div className="space-y-4">
-        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-gold/20 pb-2">
+        <h3 className="font-serif text-xl font-medium text-emerald-dark border-b border-line pb-2">
           4. Detailed Requirements
         </h3>
 
@@ -380,13 +380,13 @@ export default function QuoteForm({
             value={formData.message}
             onChange={handleInputChange}
             placeholder="Describe your requirements, celebration schedule, or commercial export needs in detail..."
-            className="w-full bg-cream border border-gold/30 rounded-sm px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+            className="w-full bg-cream border border-line rounded-xl px-4 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
           />
         </FormField>
       </div>
 
       {/* Submit Button & Assurance */}
-      <div className="pt-4 border-t border-gold/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="pt-4 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-xs text-charcoal/60 text-center sm:text-left">
           Protected commercial submission • J The Divine Eco Valley
         </div>

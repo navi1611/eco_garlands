@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="group bg-cream-soft rounded-sm border border-gold/20 hover:border-gold/60 transition-all duration-300 overflow-hidden flex flex-col h-full shadow-xs hover:shadow-md">
+    <div className="group bg-cream-soft rounded-xl border border-line hover:border-gold/60 transition-all duration-300 overflow-hidden flex flex-col h-full shadow-xs hover:shadow-md">
       {/* Product Image */}
       <Link
         href={`/products/${product.slug}`}
@@ -56,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Intended occasion / application */}
           {product.occasion && (
-            <div className="pt-2 border-t border-gold/15">
+            <div className="pt-2 border-t border-line">
               <span className="text-xs text-charcoal/60 block truncate">
                 <strong className="text-charcoal font-medium">Use:</strong>{' '}
                 {product.occasion}

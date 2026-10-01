@@ -42,7 +42,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
         aria-expanded={isOpen}
-        className="relative z-50 p-2 text-emerald focus:outline-none focus:ring-2 focus:ring-gold rounded-sm cursor-pointer"
+        className="relative z-50 p-2 text-emerald focus:outline-none focus:ring-2 focus:ring-gold rounded-xl cursor-pointer"
       >
         <div className="w-6 h-5 flex flex-col justify-between">
           <span
@@ -66,19 +66,19 @@ export default function MobileMenu({ links }: MobileMenuProps) {
       {/* Backdrop overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-charcoal/40 backdrop-blur-sm z-40 transition-opacity"
+          className="fixed inset-0 bg-charcoal/15 backdrop-blur-sm z-40 transition-opacity"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Slide-in drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-cream-soft border-l border-gold/20 shadow-2xl z-40 transform transition-transform duration-300 ease-out flex flex-col justify-between p-6 pt-24 ${
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-cream-soft border-l border-line shadow-2xl z-40 transform transition-transform duration-300 ease-out flex flex-col justify-between p-6 pt-24 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="space-y-6">
-          <div className="border-b border-gold/20 pb-4">
+          <div className="border-b border-line pb-4">
             <span className="text-xs uppercase tracking-[0.2em] text-gold-dark font-medium">
               Navigation
             </span>
@@ -104,7 +104,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
           </nav>
         </div>
 
-        <div className="space-y-4 pt-6 border-t border-gold/20">
+        <div className="space-y-4 pt-6 border-t border-line">
           <Button
             href="/quote"
             variant="primary"

@@ -1,109 +1,84 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Leaf, Hand, Globe2 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 
+const PILLARS = [
+  {
+    title: 'Natural Materials',
+    desc: 'Selected cardamom pods, whole aromatic spices, nuts and sustainable botanical cords harvested with care.',
+    icon: Leaf,
+  },
+  {
+    title: 'Handcrafted',
+    desc: 'Formed by skilled artisans preserving generational Indian knotting, weaving and ceremonial garland techniques.',
+    icon: Hand,
+  },
+  {
+    title: 'Export Ready',
+    desc: 'Engineered for transit integrity, uniform presentation and international phytosanitary compliance.',
+    icon: Globe2,
+  },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export default function BrandIntro() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const quoteY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const pillar0Y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const pillar1Y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const pillar2Y = useTransform(scrollYProgress, [0, 1], [70, -70]);
-
-  const pillars = [
-    {
-      title: 'Natural Materials',
-      desc: 'Selected cardamom pods, whole aromatic spices, nuts, and sustainable botanical cords harvested with care.',
-      icon: '🌿',
-      y: pillar0Y,
-    },
-    {
-      title: 'Handcrafted',
-      desc: 'Formed by skilled artisans preserving generational Indian knotting, weaving, and ceremonial garland techniques.',
-      icon: '✨',
-      y: pillar1Y,
-    },
-    {
-      title: 'Export Ready',
-      desc: 'Engineered for international transit integrity, uniform presentation, and international phytosanitary compliance.',
-      icon: '🌐',
-      y: pillar2Y,
-    },
-  ];
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 lg:py-28 bg-[#F9F7EE] border-b border-gold/15 relative overflow-hidden"
-    >
-      {/* Parallax background watermark */}
-      <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
-        className="absolute -right-20 top-1/4 text-[220px] font-serif text-gold/5 select-none pointer-events-none leading-none font-bold"
-      >
-        DIVINE
-      </motion.div>
-
+    <section className="py-24 lg:py-36 bg-white border-y border-line">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Editorial Philosophy */}
-          <motion.div style={{ y: quoteY }} className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
+          <div className="lg:col-span-5 lg:sticky lg:top-32 self-start">
             <SectionHeading
               align="left"
               badge="The Philosophy"
-              title="Where Nature Becomes a Celebration"
-              subtitle="J The Divine Eco Valley transforms naturally sourced ingredients such as cardamom, nuts and spices into distinctive handcrafted garlands designed for ceremonies, weddings, homes, cultural events, celebrations and gifting."
+              title="Where nature becomes a celebration"
+              subtitle="We transform naturally sourced cardamom, nuts and spices into distinctive handcrafted garlands for ceremonies, weddings, homes, cultural events and gifting."
             />
 
-            <motion.div
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-              className="p-8 bg-[#FFFEFA] rounded-xl border border-gold/30 shadow-md relative group overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-gold/15 to-transparent rounded-bl-full pointer-events-none" />
-              <div className="text-3xl text-gold/60 mb-2 font-serif select-none">“</div>
-              <blockquote className="font-serif italic text-lg sm:text-xl text-emerald-dark leading-relaxed">
-                Every seed, pod, and spice bead carries an organic rhythm. Our purpose is to elevate
-                these gifts of the earth into sacred, celebratory keepsakes that travel gracefully
-                across borders.
+            <figure className="mt-12 pl-6 border-l border-gold/60">
+              <blockquote className="font-serif italic text-xl text-emerald-dark leading-[1.6]">
+                “Every seed, pod and spice bead carries an organic rhythm. Our purpose is to elevate
+                these gifts of the earth into keepsakes that travel gracefully across borders.”
               </blockquote>
-              <div className="mt-4 pt-4 border-t border-gold/15 flex items-center justify-between text-xs text-charcoal/60">
-                <span className="font-serif font-medium text-emerald-dark">Master Artisan Guild</span>
-                <span className="text-gold-dark font-medium tracking-wider uppercase">J The Divine Eco Valley</span>
-              </div>
-            </motion.div>
-          </motion.div>
+              <figcaption className="mt-5 text-xs uppercase tracking-[0.2em] text-charcoal/45">
+                Master Artisan Guild
+              </figcaption>
+            </figure>
+          </div>
 
-          {/* Right Column: Three Brand Pillars with Parallax Stagger */}
-          <div className="lg:col-span-6 space-y-6">
-            {pillars.map((pillar) => (
-              <motion.div
-                key={pillar.title}
-                style={{ y: pillar.y }}
-                whileHover={{ scale: 1.02, x: 4 }}
-                transition={{ duration: 0.25 }}
-                className="flex items-start gap-5 p-6 sm:p-7 bg-[#FFFEFA] rounded-xl border border-gold/25 hover:border-gold/60 transition-all shadow-xs hover:shadow-lg group cursor-default"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-emerald/10 text-emerald flex items-center justify-center text-2xl shrink-0 border border-emerald/20 group-hover:bg-gold/15 group-hover:border-gold/40 transition-colors">
-                  {pillar.icon}
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl sm:text-2xl font-medium text-emerald-dark group-hover:text-emerald transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-charcoal/80 leading-relaxed font-normal">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="lg:col-span-7 divide-y divide-line border-y border-line">
+            {PILLARS.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <motion.div
+                  key={pillar.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.8, delay: idx * 0.08, ease }}
+                  className="group grid grid-cols-[auto_1fr] sm:grid-cols-[4rem_auto_1fr] gap-6 sm:gap-8 py-10 items-start"
+                >
+                  <span className="hidden sm:block font-serif text-sm text-charcoal/35 pt-2 tabular-nums">
+                    0{idx + 1}
+                  </span>
+                  <span className="w-12 h-12 rounded-full border border-line flex items-center justify-center text-emerald transition-colors duration-300 group-hover:bg-sage group-hover:border-sage-line">
+                    <Icon className="w-5 h-5" strokeWidth={1.5} />
+                  </span>
+                  <div className="col-span-2 sm:col-span-1">
+                    <h3 className="font-serif text-2xl sm:text-[1.75rem] text-emerald-dark tracking-[-0.01em]">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-[15px] text-charcoal/60 leading-[1.75] max-w-md">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </Container>

@@ -93,7 +93,7 @@ export default function ContactDialog() {
               Thank you for reaching out to J The Divine Eco Valley. Our team has received your inquiry and will contact you via email or phone shortly.
             </p>
             {referenceId && (
-              <div className="inline-block mt-3 px-4 py-1.5 rounded-sm bg-cream-soft border border-gold/30 text-xs font-mono text-emerald-dark font-medium">
+              <div className="inline-block mt-3 px-4 py-1.5 rounded-xl bg-cream-soft border border-line text-xs font-mono text-emerald-dark font-medium">
                 Reference ID: {referenceId}
               </div>
             )}
@@ -123,7 +123,7 @@ export default function ContactDialog() {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           {serverError && (
-            <div className="p-3.5 rounded-sm bg-red-50 border border-red-200 text-red-800 text-xs">
+            <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs">
               {serverError}
             </div>
           )}
@@ -144,7 +144,7 @@ export default function ContactDialog() {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="e.g. Ananya Rao"
-                className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                className="w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
               />
               {errors.name && (
                 <p className="text-[11px] text-red-600 mt-1">{errors.name[0]}</p>
@@ -166,7 +166,7 @@ export default function ContactDialog() {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="e.g. ananya@example.com"
-                className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                className="w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
               />
               {errors.email && (
                 <p className="text-[11px] text-red-600 mt-1">{errors.email[0]}</p>
@@ -189,7 +189,7 @@ export default function ContactDialog() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="e.g. +91 98765 43210"
-                className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                className="w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
               />
             </div>
 
@@ -208,7 +208,7 @@ export default function ContactDialog() {
                 value={formData.subject}
                 onChange={handleInputChange}
                 placeholder="e.g. Wedding Varmala / Export Inquiry"
-                className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+                className="w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
               />
               {errors.subject && (
                 <p className="text-[11px] text-red-600 mt-1">{errors.subject[0]}</p>
@@ -231,14 +231,14 @@ export default function ContactDialog() {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="Please describe your requirements, event timeline, or questions..."
-              className="w-full bg-[#FFFEFA] border border-gold/30 rounded-sm px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
+              className="w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm text-emerald-dark focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold"
             />
             {errors.message && (
               <p className="text-[11px] text-red-600 mt-1">{errors.message[0]}</p>
             )}
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gold/20">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-line">
             <button
               type="button"
               onClick={() => openQuoteModal()}

@@ -17,7 +17,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   return (
     <div className="space-y-4">
       {/* Main Large Display Image */}
-      <div className="relative aspect-4/5 w-full rounded-sm overflow-hidden bg-botanical/10 border border-gold/30 shadow-sm">
+      <div className="relative aspect-4/5 w-full rounded-xl overflow-hidden bg-botanical/10 border border-line shadow-sm">
         <Image
           src={activeImage}
           alt={`${productName} - View ${selectedIndex + 1}`}
@@ -26,7 +26,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover transition-opacity duration-300"
         />
-        <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-cream-soft/85 backdrop-blur-xs rounded-xs text-[10px] uppercase tracking-wider text-charcoal/80 border border-gold/20">
+        <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-cream-soft/85 backdrop-blur-xs rounded-lg text-[10px] uppercase tracking-wider text-charcoal/80 border border-line">
           Handcrafted Natural Specimen
         </div>
       </div>
@@ -38,10 +38,10 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             <button
               key={idx}
               onClick={() => setSelectedIndex(idx)}
-              className={`relative w-20 h-20 shrink-0 rounded-xs overflow-hidden border-2 transition-all cursor-pointer ${
+              className={`relative w-20 h-20 shrink-0 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                 selectedIndex === idx
                   ? 'border-gold shadow-xs scale-95'
-                  : 'border-gold/20 opacity-70 hover:opacity-100'
+                  : 'border-line opacity-70 hover:opacity-100'
               }`}
             >
               <Image

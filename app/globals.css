@@ -1,87 +1,154 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FFFEFA;
-  --color-cream-soft: #F9F7EE;
-  --color-cream-subtle: #F2EEDF;
-  --color-emerald: #113A2B;
-  --color-emerald-dark: #0A261D;
-  --color-emerald-light: #1D5440;
-  --color-gold: #C5A059;
-  --color-gold-light: #DFCA95;
-  --color-gold-dark: #9E7D35;
-  --color-botanical: #4D6F59;
-  --color-charcoal: #1C2420;
-  --color-charcoal-light: #323E37;
+  /* Neutral surfaces — soft off-white canvas with pure white cards */
+  --color-canvas: #F6F5F1;
+  --color-surface: #FFFFFF;
+  --color-line: #E7E4DD;
+  --color-line-strong: #D6D2C8;
+
+  /* Light accent — soft sage used for buttons, badges and active states */
+  --color-sage: #E7EDE0;
+  --color-sage-strong: #DAE3D0;
+  --color-sage-line: #C9D5BC;
+
+  /* Legacy cream names, retuned to the neutral off-white scale */
+  --color-cream: #FFFFFF;
+  --color-cream-soft: #F6F5F1;
+  --color-cream-subtle: #ECEAE4;
+
+  /* Brand */
+  --color-emerald: #133B2D;
+  --color-emerald-dark: #0B2219;
+  --color-emerald-light: #245845;
+  --color-gold: #B39260;
+  --color-gold-light: #D8C6A3;
+  --color-gold-dark: #8A6C3E;
+  --color-botanical: #5B7765;
+  --color-charcoal: #1A1D1B;
+  --color-charcoal-light: #3A403C;
 
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(16, 24, 20, 0.04), 0 8px 24px -12px rgba(16, 24, 20, 0.08);
+  --shadow-lift: 0 2px 4px rgba(16, 24, 20, 0.04), 0 24px 48px -20px rgba(16, 24, 20, 0.18);
 }
 
 :root {
-  --background: #FFFEFA;
-  --foreground: #113A2B;
+  /* Light theme only — opt out of browser/OS dark-mode rendering */
+  color-scheme: only light;
+  --background: #F6F5F1;
+  --foreground: #0B2219;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #FFFEFA;
+  background-color: #F6F5F1;
 }
 
 body {
-  background-color: #FFFEFA;
-  color: #113A2B;
+  background-color: #F6F5F1;
+  color: #0B2219;
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background-color: #C5A059;
-  color: #0A261D;
+  background-color: #DAE3D0;
+  color: #0B2219;
 }
 
-/* Luxury scrollbar */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFFEFA;
+  background: #F6F5F1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D8D4C8;
-  border-radius: 4px;
+  background: #D6D2C8;
+  border-radius: 8px;
+  border: 2px solid #F6F5F1;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C5A059;
+  background: #B39260;
 }
 
-/* Glassmorphism & Modern UI utilities */
+/* Surfaces */
 .glass-panel {
-  background: rgba(255, 254, 250, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 160, 89, 0.25);
-}
-
-.glass-panel-dark {
-  background: rgba(10, 38, 29, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(197, 160, 89, 0.3);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  border: 1px solid #E7E4DD;
 }
 
 .gold-glow {
-  box-shadow: 0 0 25px -5px rgba(197, 160, 89, 0.25);
+  box-shadow: var(--shadow-soft);
 }
 
 .gold-glow-hover:hover {
-  box-shadow: 0 10px 30px -5px rgba(197, 160, 89, 0.35);
+  box-shadow: var(--shadow-lift);
 }
 
-/* Smooth Parallax card perspective */
+/* Small uppercase label used above headings */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Subtle grain/grid texture for hero backgrounds */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(19, 59, 45, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(19, 59, 45, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Gold line with a soft highlight flowing downward along it */
+.gold-flow {
+  background-color: #C9A55C;
+  background-image: linear-gradient(
+    180deg,
+    #B48A3E 0%,
+    #D9BC7E 30%,
+    #F3E3B8 50%,
+    #D9BC7E 70%,
+    #B48A3E 100%
+  );
+  background-size: 100% 260px;
+  animation: gold-flow 3.2s linear infinite;
+}
+@keyframes gold-flow {
+  from { background-position: 0 0; }
+  to { background-position: 0 260px; }
+}
+
 .perspective-1000 {
   perspective: 1000px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gold-flow {
+    animation: none;
+  }
 }

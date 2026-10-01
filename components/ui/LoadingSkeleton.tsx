@@ -7,7 +7,7 @@ interface SkeletonProps {
 export function Skeleton({ className = '' }: SkeletonProps) {
   return (
     <div
-      className={`animate-pulse bg-botanical/20 rounded-sm ${className}`}
+      className={`animate-pulse bg-botanical/20 rounded-xl ${className}`}
     />
   );
 }
@@ -20,7 +20,7 @@ export default function LoadingSkeleton() {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="border border-botanical/20 bg-cream-soft p-4 rounded-sm space-y-4"
+            className="border border-botanical/20 bg-cream-soft p-4 rounded-xl space-y-4"
           >
             <Skeleton className="h-64 w-full" />
             <Skeleton className="h-4 w-1/4" />

@@ -20,7 +20,7 @@ export default function Badge({
 
   const variantClasses = {
     emerald: 'bg-emerald/10 text-emerald border border-emerald/20',
-    gold: 'bg-gold/15 text-gold-dark border border-gold/30',
+    gold: 'bg-gold/15 text-gold-dark border border-line',
     botanical: 'bg-botanical/20 text-charcoal border border-botanical/30',
     cream: 'bg-cream-soft text-emerald border border-emerald/10 shadow-xs',
     outline: 'bg-transparent text-charcoal border border-charcoal/20',

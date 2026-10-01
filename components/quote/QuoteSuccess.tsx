@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import { Check } from 'lucide-react';
 
 interface QuoteSuccessProps {
   referenceId?: string;
@@ -11,9 +12,9 @@ interface QuoteSuccessProps {
 
 export default function QuoteSuccess({ referenceId, onReset }: QuoteSuccessProps) {
   return (
-    <div className="bg-cream-soft border border-gold/40 rounded-sm p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-md space-y-6">
-      <div className="w-16 h-16 rounded-full bg-emerald/10 border border-gold/40 text-emerald flex items-center justify-center mx-auto text-2xl">
-        ✓
+    <div className="bg-cream-soft border border-line-strong rounded-xl p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-md space-y-6">
+      <div className="w-16 h-16 rounded-full bg-emerald/10 border border-line-strong text-emerald flex items-center justify-center mx-auto">
+        <Check className="w-7 h-7" strokeWidth={1.75} />
       </div>
 
       <div className="space-y-2">
@@ -31,7 +32,7 @@ export default function QuoteSuccess({ referenceId, onReset }: QuoteSuccessProps
       </p>
 
       {referenceId && (
-        <div className="p-4 bg-cream rounded-xs border border-gold/25 inline-block text-left">
+        <div className="p-4 bg-cream rounded-lg border border-line inline-block text-left">
           <span className="text-xs uppercase tracking-wider text-charcoal/60 block">
             Reference Tracking ID
           </span>

@@ -43,7 +43,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       </div>
 
       {/* Specifications Grid */}
-      <div className="border-t border-b border-gold/20 py-6 space-y-4">
+      <div className="border-t border-b border-line py-6 space-y-4">
         {/* Base Material */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <span className="text-xs uppercase tracking-wider text-charcoal/60 font-medium">
@@ -63,7 +63,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             {product.materials.map((mat) => (
               <span
                 key={mat}
-                className="text-xs px-2.5 py-1 bg-cream rounded-xs border border-gold/20 text-charcoal"
+                className="text-xs px-2.5 py-1 bg-cream rounded-lg border border-line text-charcoal"
               >
                 {mat}
               </span>
@@ -98,7 +98,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Customization & Export Accordion / Informational Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-4 bg-cream-soft rounded-sm border border-gold/20">
+        <div className="p-4 bg-cream-soft rounded-xl border border-line">
           <h4 className="font-serif text-base text-emerald-dark font-medium">
             Customization Capabilities
           </h4>
@@ -107,7 +107,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           </p>
         </div>
 
-        <div className="p-4 bg-cream-soft rounded-sm border border-gold/20">
+        <div className="p-4 bg-cream-soft rounded-xl border border-line">
           <h4 className="font-serif text-base text-emerald-dark font-medium">
             Export Packaging & Dispatch
           </h4>

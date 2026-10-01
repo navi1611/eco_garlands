@@ -14,7 +14,7 @@ export default function ParallaxScrollProgress() {
   return (
     <motion.div
       style={{ scaleX }}
-      className="fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-gold-light via-gold to-emerald origin-left z-50 pointer-events-none"
+      className="fixed top-0 left-0 right-0 h-[2px] bg-gold/70 origin-left z-50 pointer-events-none"
     />
   );
 }

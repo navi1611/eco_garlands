@@ -15,7 +15,7 @@ export default function ErrorState({
   resetHref = '/products',
 }: ErrorStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center text-center p-12 my-12 border border-red-200/60 rounded-sm bg-red-50/40">
+    <div className="flex flex-col items-center justify-center text-center p-12 my-12 border border-red-200/60 rounded-xl bg-red-50/40">
       <div className="w-16 h-16 mb-4 rounded-full bg-red-100 flex items-center justify-center text-red-800">
         <svg
           className="w-8 h-8"

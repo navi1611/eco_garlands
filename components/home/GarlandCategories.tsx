@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Button from '@/components/ui/Button';
@@ -22,152 +24,130 @@ export const CATEGORY_ITEMS: CategoryInfo[] = [
     categoryParam: 'Weddings',
     description:
       'Harmonious cardamom and spiced varmalas designed for bride and groom exchanges, ceremonial wedding stages, and matrimonial keepsakes.',
-    subtext: 'Varmala rituals • Wedding stages • Matrimonial photography',
+    subtext: 'Varmala rituals · Wedding stages · Matrimonial photography',
     imageUrl:
-      'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1764286954620-28029fbae9b6?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Religious & Spiritual Ceremonies',
     categoryParam: 'Religious+%26+Spiritual',
     description:
       'Sacred garlands tailored with reverence for temple sanctums, puja rituals, deity alankaram, and homam invocations.',
-    subtext: 'Temple vigraha alankaram • Puja ceremonies • Sanctum offerings',
+    subtext: 'Temple vigraha alankaram · Puja ceremonies · Sanctum offerings',
     imageUrl:
-      'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1780318564577-fcd6a7454eeb?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Home & Interior',
     categoryParam: 'Home+%26+Interior',
     description:
       'Aromatic torans and entryway portal garlands that bring an organic botanical aesthetic and subtle spice scent to living spaces.',
-    subtext: 'Entrance doorways • Altar backdrops • Festive portal torans',
+    subtext: 'Entrance doorways · Altar backdrops · Festive portal torans',
     imageUrl:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1589463349208-95817c91f971?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Festivals & Cultural Events',
     categoryParam: 'Festivals+%26+Cultural',
     description:
       'Celebratory multi-tiered garlands crafted to enhance traditional harvest festivals, regional festivities, and community celebrations.',
-    subtext: 'Diwali • Pongal / Sankranti • Navratri • Regional festivals',
+    subtext: 'Diwali · Pongal / Sankranti · Navratri · Regional festivals',
     imageUrl:
-      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1577083753695-e010191bacb5?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Corporate & Hospitality',
     categoryParam: 'Hospitality',
     description:
       'Imposing yet comfortable welcome garlands engineered for luxury hotels, heritage resorts, VIP dignitary arrivals, and conventions.',
-    subtext: 'Resort guest welcomes • Corporate felicitations • Diplomatic honors',
+    subtext: 'Resort guest welcomes · Corporate felicitations · Diplomatic honors',
     imageUrl:
-      'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1742844552193-2fd3425cd26d?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Gifting',
     categoryParam: 'Gifting',
     description:
       'Presented in handcrafted keepsake presentation cases, our export-ready gift garlands convey thoughtful cultural reverence.',
-    subtext: 'Bespoke gift boxes • Milestone tokens • Heirloom keepsakes',
+    subtext: 'Bespoke gift boxes · Milestone tokens · Heirloom keepsakes',
     imageUrl:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1764764138818-0b22ab4d4023?auto=format&fit=crop&w=800&q=80',
   },
 ];
 
-export default function GarlandCategories() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
+const ease = [0.22, 1, 0.36, 1] as const;
 
+export default function GarlandCategories() {
   const { openQuoteModal } = useModal();
 
-  // Create staggered parallax transforms for cards
-  const yCol1 = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const yCol2 = useTransform(scrollYProgress, [0, 1], [15, -15]);
-  const yCol3 = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
-  const getYOffset = (idx: number) => {
-    const col = idx % 3;
-    if (col === 0) return yCol1;
-    if (col === 1) return yCol2;
-    return yCol3;
-  };
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 lg:py-28 bg-[#F9F7EE] border-b border-gold/15 overflow-hidden"
-    >
+    <section className="py-24 lg:py-36 bg-white border-y border-line">
       <Container>
-        <SectionHeading
-          badge="Curated Collections"
-          title="Garlands for Every Celebration"
-          subtitle="Explore distinct collections tailored with specific cultural, religious, architectural, and celebratory considerations."
-        />
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <SectionHeading
+            align="left"
+            badge="Curated Collections"
+            title="Garlands for every celebration"
+          />
+          <Button
+            href="/products"
+            variant="outline"
+            size="md"
+            icon={<ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />}
+          >
+            View all products
+          </Button>
+        </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14">
           {CATEGORY_ITEMS.map((cat, idx) => (
-            <motion.div
+            <motion.article
               key={cat.title}
-              style={{ y: getYOffset(idx) }}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="group bg-[#FFFEFA] rounded-xl border border-gold/25 hover:border-gold/60 transition-all overflow-hidden flex flex-col h-full shadow-xs hover:shadow-xl"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.9, delay: (idx % 3) * 0.1, ease }}
+              className="group flex flex-col"
             >
-              {/* Visual Image container */}
-              <div className="relative h-64 w-full overflow-hidden bg-botanical/10">
+              <Link
+                href={`/products?category=${cat.categoryParam}`}
+                className="relative block aspect-4/3 w-full overflow-hidden rounded-2xl bg-cream-subtle"
+              >
                 <Image
                   src={cat.imageUrl}
                   alt={cat.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-108"
+                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-emerald-dark/80 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-                <div className="absolute bottom-3 left-4 right-4">
-                  <span className="text-[11px] uppercase tracking-wider text-cream/95 font-medium drop-shadow-xs">
-                    {cat.subtext}
-                  </span>
-                </div>
-              </div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/45 via-black/0 to-black/0" />
+                <span className="absolute top-5 left-5 font-serif text-sm text-white/90 tabular-nums">
+                  0{idx + 1}
+                </span>
+                <span className="absolute bottom-5 right-5 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-emerald-dark opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                  <ArrowUpRight className="w-4 h-4" />
+                </span>
+                <span className="absolute bottom-5 left-5 right-20 text-[11px] uppercase tracking-[0.14em] text-white/85 leading-relaxed">
+                  {cat.subtext}
+                </span>
+              </Link>
 
-              {/* Content */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="font-serif text-2xl font-medium text-emerald-dark group-hover:text-emerald transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm text-charcoal/80 leading-relaxed font-normal">
-                    {cat.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 grid grid-cols-2 gap-2 border-t border-gold/15">
-                  <Button
-                    href={`/products?category=${cat.categoryParam}`}
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-center"
-                  >
-                    View Range
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="primary"
-                    size="sm"
-                    className="w-full text-center"
-                    onClick={() =>
-                      openQuoteModal({
-                        productName: `Collection: ${cat.title}`,
-                      })
-                    }
-                  >
-                    Quick Quote
-                  </Button>
-                </div>
+              <div className="pt-6 flex-1 flex flex-col">
+                <h3 className="font-serif text-2xl text-emerald-dark tracking-[-0.01em]">
+                  {cat.title}
+                </h3>
+                <p className="mt-3 text-[15px] text-charcoal/60 leading-[1.75] flex-1">
+                  {cat.description}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => openQuoteModal({ productName: `Collection: ${cat.title}` })}
+                  className="mt-5 self-start text-sm font-medium text-emerald-dark underline decoration-line-strong underline-offset-[6px] hover:decoration-emerald-dark transition-colors cursor-pointer"
+                >
+                  Request a quote
+                </button>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </Container>

@@ -8,7 +8,7 @@ export default function NotFound() {
     <div className="py-24 sm:py-32 bg-cream text-center">
       <Container size="narrow">
         <div className="space-y-6">
-          <span className="text-xs uppercase tracking-[0.25em] text-gold-dark font-semibold px-3 py-1 rounded-full border border-gold/30 bg-gold/10 inline-block">
+          <span className="text-xs uppercase tracking-[0.25em] text-gold-dark font-semibold px-3 py-1 rounded-full border border-line bg-gold/10 inline-block">
             404 — Specimen Not Found
           </span>
 

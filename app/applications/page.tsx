@@ -21,7 +21,7 @@ export default function ApplicationsPage() {
         'In traditional Indian ceremonies, the garland exchange (Varmala or Jaimala) symbolizes mutual respect and spiritual unity. Handcrafted cardamom garlands provide an exquisite alternative to perishable fresh flowers — lightweight, fragrant, resistant to wilting in high heat, and serving as a cherished keepsake long after the wedding vows.',
       uses: ['Bride & Groom Varmala exchange', 'Mandap and canopy backdrops', 'Stage photography', 'Keepsake preservation in velvet cases'],
       imageUrl:
-        'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1754782915842-aa4fca6c203a?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Weddings',
     },
     {
@@ -32,7 +32,7 @@ export default function ApplicationsPage() {
         'Conforming to time-honored devotional customs, our sanctum garlands are assembled with whole unbroken cardamom, sacred nuts, and unbleached cotton threads. Each design adheres to regional deity alankaram requirements, homam offerings, and sacred temple vigraha adorning.',
       uses: ['Temple vigraha alankaram', 'Home puja mandirs & altars', 'Griha Pravesh (Housewarming)', 'Special homams and annual festivals'],
       imageUrl:
-        'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1780318565569-b9208f729546?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Religious+%26+Spiritual',
     },
     {
@@ -43,7 +43,7 @@ export default function ApplicationsPage() {
         'Festive milestones such as Diwali, Pongal, Sankranti, and Navratri celebrate the bounty of nature and agricultural harvest. Our multi-tiered spice garlands feature sun-cured spices, cinnamon scrolls, and golden grass weaves that accentuate traditional community stages.',
       uses: ['Harvest festival celebrations', 'Community cultural programs', 'Festive entryway arches', 'Stage felicitation ceremonies'],
       imageUrl:
-        'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1760192158969-fba5f503404f?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Festivals+%26+Cultural',
     },
     {
@@ -54,7 +54,7 @@ export default function ApplicationsPage() {
         'Historically placed above main entrances to invite auspicious energy and pleasant aroma, natural spice torans add an earthy, warm organic texture to residential doorways, meditation corners, and architectural niches.',
       uses: ['Main portal entrance torans', 'Meditation and prayer rooms', 'Living room wall art installations', 'Auspicious celebratory door hangings'],
       imageUrl:
-        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1589463349208-95817c91f971?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Home+%26+Interior',
     },
     {
@@ -65,7 +65,7 @@ export default function ApplicationsPage() {
         'Luxury resorts, heritage palace hotels, and corporate convenings honor the ancient ethos of "Atithi Devo Bhava" (The guest is divine). Our grand welcome garlands provide an unforgettable sensory greeting that international visitors cherish and take home as a preserved botanical token.',
       uses: ['Resort arrival greetings', 'Diplomatic & dignitary welcomes', 'Corporate annual general meetings', 'Conclave lamp-lighting ceremonies'],
       imageUrl:
-        'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1759177715489-74112089de1a?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Hospitality',
     },
     {
@@ -76,7 +76,7 @@ export default function ApplicationsPage() {
         'Encased in handcrafted wooden or rigid presentation cases, our gift garlands serve as respectful, non-perishable tokens for milestones, anniversaries, and high-level corporate gifting.',
       uses: ['Corporate executive milestones', 'Wedding favor keepsakes', 'Heirloom family gifts', 'Diplomatic cultural tokens'],
       imageUrl:
-        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1000&q=80',
+        'https://images.unsplash.com/photo-1766425221306-4d44f4011d4a?auto=format&fit=crop&w=1000&q=80',
       href: '/products?category=Gifting',
     },
   ];
@@ -94,11 +94,11 @@ export default function ApplicationsPage() {
             return (
               <FadeIn key={app.title} direction="up" delay={0.1}>
                 <div
-                  className={`bg-cream-soft rounded-sm border border-gold/25 p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
+                  className={`bg-cream-soft rounded-xl border border-line p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
                 >
                   {/* Image Column */}
                   <div
-                    className={`lg:col-span-5 relative h-64 sm:h-80 w-full rounded-sm overflow-hidden bg-botanical/10 border border-gold/20 ${
+                    className={`lg:col-span-5 relative h-64 sm:h-80 w-full rounded-xl overflow-hidden bg-botanical/10 border border-line ${
                       isReversed ? 'lg:order-2' : 'lg:order-1'
                     }`}
                   >
@@ -110,7 +110,7 @@ export default function ApplicationsPage() {
                       className="object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="text-xs uppercase tracking-wider text-cream font-medium bg-emerald-dark/85 px-3 py-1 rounded-full border border-gold/30">
+                      <span className="text-[11px] uppercase tracking-[0.16em] text-emerald-dark font-medium bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-line">
                         {app.category}
                       </span>
                     </div>
@@ -142,7 +142,7 @@ export default function ApplicationsPage() {
                         {app.uses.map((use) => (
                           <span
                             key={use}
-                            className="text-xs px-2.5 py-1 bg-cream rounded-xs border border-gold/20 text-charcoal"
+                            className="text-xs px-2.5 py-1 bg-cream rounded-lg border border-line text-charcoal"
                           >
                             {use}
                           </span>

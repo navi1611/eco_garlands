@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-cream">
+    <div className="bg-canvas">
       <PageContainer
         badge="Our Artisan Heritage"
         title="From Seed to Celebration"
@@ -33,7 +33,7 @@ export default function AboutPage() {
         <ManufacturingProcess />
 
         {/* Bottom Call to Action */}
-        <div className="mt-16 text-center bg-cream-soft p-10 border border-gold/30 rounded-sm">
+        <div className="mt-20 text-center bg-white p-10 sm:p-14 border border-line rounded-3xl">
           <h3 className="font-serif text-2xl sm:text-3xl text-emerald-dark font-medium">
             Experience Our Handcrafted Garlands
           </h3>

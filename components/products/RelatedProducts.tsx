@@ -14,7 +14,7 @@ export default function RelatedProducts({ products, category }: RelatedProductsP
   }
 
   return (
-    <section className="py-16 border-t border-gold/20 mt-16">
+    <section className="py-16 border-t border-line mt-16">
       <div className="mb-10">
         <SectionHeading
           badge="More from Collection"
