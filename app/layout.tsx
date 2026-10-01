@@ -3,6 +3,10 @@ import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ModalProvider } from "@/components/modal/ModalContext";
+import GlobalModals from "@/components/modal/GlobalModals";
+import FloatingActionWidget from "@/components/ui/FloatingActionWidget";
+import ParallaxScrollProgress from "@/components/animation/ParallaxScrollProgress";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -109,10 +113,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-emerald font-sans antialiased selection:bg-gold selection:text-emerald-dark">
-        <Navbar />
-        <main className="flex-1 w-full bg-white">{children}</main>
-        <Footer />
+      <body className="min-h-screen flex flex-col bg-[#FFFEFA] text-emerald font-sans antialiased selection:bg-gold selection:text-emerald-dark">
+        <ModalProvider>
+          <ParallaxScrollProgress />
+          <Navbar />
+          <main className="flex-1 w-full bg-[#FFFEFA]">{children}</main>
+          <Footer />
+          <GlobalModals />
+          <FloatingActionWidget />
+        </ModalProvider>
       </body>
     </html>
   );

@@ -1,95 +1,26 @@
-import React from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
-import FadeIn from '@/components/animation/FadeIn';
-
-export interface ApplicationItem {
-  title: string;
-  tagline: string;
-  description: string;
-  icon: string;
-  href: string;
-}
-
-export const APPLICATION_LIST: ApplicationItem[] = [
-  {
-    title: 'Weddings',
-    tagline: 'Ceremonial & Matrimonial Vows',
-    description:
-      'Worn during the auspicious varmala exchange, creating fragrant and timeless photo memories.',
-    icon: '💍',
-    href: '/products?category=Weddings',
-  },
-  {
-    title: 'Religious Ceremonies',
-    tagline: 'Temple Sanctums & Rituals',
-    description:
-      'Custom woven for deity alankaram, homams, and sanctum installations with sacred adherence.',
-    icon: '🪔',
-    href: '/products?category=Religious+%26+Spiritual',
-  },
-  {
-    title: 'Festivals',
-    tagline: 'Cultural & Seasonal Joy',
-    description:
-      'Adorning festival stages and community celebrations during Diwali, Pongal, and festive seasons.',
-    icon: '✨',
-    href: '/products?category=Festivals+%26+Cultural',
-  },
-  {
-    title: 'Home Decoration',
-    tagline: 'Organic Living Spaces',
-    description:
-      'Entryway portals and wall hangings imparting natural botanical character and natural scent.',
-    icon: '🏡',
-    href: '/products?category=Home+%26+Interior',
-  },
-  {
-    title: 'Prayer Spaces',
-    tagline: 'Serene Pooja Altars',
-    description:
-      'Framing meditation niches and home pooja mandirs with serene, enduring spice weaves.',
-    icon: '🌸',
-    href: '/products?category=Home+%26+Interior',
-  },
-  {
-    title: 'Events & Conclaves',
-    tagline: 'Cultural Summits & Celebrations',
-    description:
-      'Elevating inaugural ceremonies, auspicious lamp-lighting events, and traditional stage decor.',
-    icon: '🏛️',
-    href: '/products?category=Hospitality',
-  },
-  {
-    title: 'Hospitality',
-    tagline: 'Resorts & VIP Receptions',
-    description:
-      'Welcoming guests and dignitaries with authentic Indian graciousness and botanical splendor.',
-    icon: '🌿',
-    href: '/products?category=Hospitality',
-  },
-  {
-    title: 'Gifting',
-    tagline: 'Heirloom Tokens & Keepsakes',
-    description:
-      'Presented in bespoke export-ready presentation boxes for celebratory personal or corporate tokens.',
-    icon: '🎁',
-    href: '/products?category=Gifting',
-  },
-  {
-    title: 'Cultural Celebrations',
-    tagline: 'Global Diaspora Traditions',
-    description:
-      'Bringing authentic regional craftsmanship to diaspora communities and heritage festivals worldwide.',
-    icon: '🌏',
-    href: '/products',
-  },
-];
+import { APPLICATION_LIST } from './ApplicationsData';
 
 export default function Applications() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const yOffset = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <section className="py-20 lg:py-28 bg-cream border-b border-gold/15">
+    <section
+      ref={sectionRef}
+      className="py-20 lg:py-28 bg-[#FFFEFA] border-b border-gold/15 overflow-hidden relative"
+    >
       <Container>
         <SectionHeading
           badge="Enduring Traditions"
@@ -97,33 +28,40 @@ export default function Applications() {
           subtitle="Explore the multifaceted contexts where our natural cardamom and spice garlands bring elegance, dignity, and sensory presence."
         />
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {APPLICATION_LIST.map((app, idx) => (
-            <FadeIn key={app.title} direction="up" delay={0.08 * idx}>
+        <motion.div
+          style={{ y: yOffset }}
+          className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {APPLICATION_LIST.map((app) => (
+            <motion.div
+              key={app.title}
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ duration: 0.25 }}
+            >
               <Link
                 href={app.href}
-                className="group block p-6 bg-cream-soft rounded-sm border border-gold/20 hover:border-gold/60 transition-all duration-300 shadow-xs hover:shadow-md h-full"
+                className="group block p-6 sm:p-7 bg-[#F9F7EE] rounded-xl border border-gold/25 hover:border-gold/60 transition-all shadow-xs hover:shadow-lg h-full relative overflow-hidden"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-3xl p-2.5 rounded-sm bg-cream border border-gold/20 group-hover:scale-110 transition-transform">
+                  <span className="text-3xl p-3 rounded-lg bg-[#FFFEFA] border border-gold/25 shadow-2xs group-hover:scale-110 group-hover:border-gold/60 transition-all">
                     {app.icon}
                   </span>
                   <div>
                     <h3 className="font-serif text-xl font-medium text-emerald-dark group-hover:text-emerald transition-colors">
                       {app.title}
                     </h3>
-                    <span className="text-xs uppercase tracking-wider text-gold-dark font-medium block mt-0.5">
+                    <span className="text-xs uppercase tracking-wider text-gold-dark font-semibold block mt-1">
                       {app.tagline}
                     </span>
-                    <p className="mt-2 text-sm text-charcoal/75 leading-relaxed">
+                    <p className="mt-2.5 text-sm text-charcoal/75 leading-relaxed font-normal">
                       {app.description}
                     </p>
                   </div>
                 </div>
               </Link>
-            </FadeIn>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

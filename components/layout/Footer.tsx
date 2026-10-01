@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Container from '@/components/ui/Container';
+import Button from '@/components/ui/Button';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -144,15 +145,13 @@ export default function Footer() {
               Consignments packaged and prepared for cultural events, weddings, and international distribution.
             </p>
             <div className="pt-2">
-              <Link
+              <Button
                 href="/quote"
-                className="inline-flex items-center text-sm font-semibold text-gold hover:text-gold-light transition-colors group"
+                variant="gold-outline"
+                size="sm"
               >
-                <span>Request Commercial Quote</span>
-                <span className="ml-1.5 transform group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </Link>
+                Request Commercial Quote →
+              </Button>
             </div>
           </div>
         </div>

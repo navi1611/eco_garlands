@@ -1,10 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+
+import React, { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Button from '@/components/ui/Button';
-import FadeIn from '@/components/animation/FadeIn';
+import { useModal } from '@/components/modal/ModalContext';
 
 export interface CategoryInfo {
   title: string;
@@ -72,8 +74,31 @@ export const CATEGORY_ITEMS: CategoryInfo[] = [
 ];
 
 export default function GarlandCategories() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const { openQuoteModal } = useModal();
+
+  // Create staggered parallax transforms for cards
+  const yCol1 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const yCol2 = useTransform(scrollYProgress, [0, 1], [15, -15]);
+  const yCol3 = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+  const getYOffset = (idx: number) => {
+    const col = idx % 3;
+    if (col === 0) return yCol1;
+    if (col === 1) return yCol2;
+    return yCol3;
+  };
+
   return (
-    <section className="py-20 lg:py-28 bg-cream-soft border-b border-gold/15">
+    <section
+      ref={sectionRef}
+      className="py-20 lg:py-28 bg-[#F9F7EE] border-b border-gold/15 overflow-hidden"
+    >
       <Container>
         <SectionHeading
           badge="Curated Collections"
@@ -81,51 +106,68 @@ export default function GarlandCategories() {
           subtitle="Explore distinct collections tailored with specific cultural, religious, architectural, and celebratory considerations."
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {CATEGORY_ITEMS.map((cat, idx) => (
-            <FadeIn key={cat.title} direction="up" delay={0.1 * idx}>
-              <div className="group bg-cream rounded-sm border border-gold/20 hover:border-gold/60 transition-all duration-300 overflow-hidden flex flex-col h-full shadow-xs hover:shadow-md">
-                {/* Visual Image container */}
-                <div className="relative h-60 w-full overflow-hidden bg-botanical/10">
-                  <Image
-                    src={cat.imageUrl}
-                    alt={cat.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-emerald-dark/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  <div className="absolute bottom-3 left-4 right-4">
-                    <span className="text-[11px] uppercase tracking-wider text-cream/90 font-medium">
-                      {cat.subtext}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h3 className="font-serif text-2xl font-medium text-emerald-dark group-hover:text-emerald transition-colors">
-                      {cat.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-charcoal/80 leading-relaxed">
-                      {cat.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-2">
-                    <Button
-                      href={`/products?category=${cat.categoryParam}`}
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                    >
-                      Explore {cat.title}
-                    </Button>
-                  </div>
+            <motion.div
+              key={cat.title}
+              style={{ y: getYOffset(idx) }}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="group bg-[#FFFEFA] rounded-xl border border-gold/25 hover:border-gold/60 transition-all overflow-hidden flex flex-col h-full shadow-xs hover:shadow-xl"
+            >
+              {/* Visual Image container */}
+              <div className="relative h-64 w-full overflow-hidden bg-botanical/10">
+                <Image
+                  src={cat.imageUrl}
+                  alt={cat.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-108"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-emerald-dark/80 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute bottom-3 left-4 right-4">
+                  <span className="text-[11px] uppercase tracking-wider text-cream/95 font-medium drop-shadow-xs">
+                    {cat.subtext}
+                  </span>
                 </div>
               </div>
-            </FadeIn>
+
+              {/* Content */}
+              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
+                <div>
+                  <h3 className="font-serif text-2xl font-medium text-emerald-dark group-hover:text-emerald transition-colors">
+                    {cat.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm text-charcoal/80 leading-relaxed font-normal">
+                    {cat.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 grid grid-cols-2 gap-2 border-t border-gold/15">
+                  <Button
+                    href={`/products?category=${cat.categoryParam}`}
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-center"
+                  >
+                    View Range
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    size="sm"
+                    className="w-full text-center"
+                    onClick={() =>
+                      openQuoteModal({
+                        productName: `Collection: ${cat.title}`,
+                      })
+                    }
+                  >
+                    Quick Quote
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </Container>

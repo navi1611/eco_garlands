@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { useModal } from '@/components/modal/ModalContext';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'gold-outline' | 'ghost';
@@ -8,6 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   isLoading?: boolean;
+  openInDialog?: boolean;
 }
 
 export default function Button({
@@ -20,8 +24,18 @@ export default function Button({
   isLoading = false,
   className = '',
   disabled,
+  openInDialog,
+  onClick,
   ...props
 }: ButtonProps) {
+  let modalContext: ReturnType<typeof useModal> | null = null;
+  try {
+    modalContext = useModal();
+  } catch {
+    // If rendered outside ModalProvider (e.g. static tests), fall back cleanly
+    modalContext = null;
+  }
+
   const baseClasses =
     'inline-flex items-center justify-center font-medium rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide cursor-pointer';
 
@@ -35,9 +49,9 @@ export default function Button({
     primary:
       'bg-gold text-emerald-dark hover:bg-gold-light hover:shadow-md active:bg-gold-dark font-semibold',
     secondary:
-      'bg-emerald text-cream hover:bg-emerald-dark hover:shadow-md active:bg-charcoal',
+      'bg-emerald text-[#FFFEFA] hover:bg-emerald-dark hover:shadow-md active:bg-charcoal',
     outline:
-      'border border-emerald text-emerald hover:bg-emerald hover:text-cream active:bg-emerald-dark',
+      'border border-emerald text-emerald hover:bg-emerald hover:text-[#FFFEFA] active:bg-emerald-dark',
     'gold-outline':
       'border border-gold text-gold hover:bg-gold hover:text-emerald-dark active:bg-gold-light',
     ghost:
@@ -76,9 +90,38 @@ export default function Button({
     </>
   );
 
+  const shouldOpenDialog =
+    openInDialog !== false &&
+    modalContext !== null &&
+    (openInDialog === true ||
+      Boolean(href && (href.startsWith('/quote') || href === '/contact')));
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (shouldOpenDialog && href && modalContext) {
+      if (href.startsWith('/quote')) {
+        e.preventDefault();
+        try {
+          const url = new URL(href, 'https://jdivineecovalley.com');
+          const productName = url.searchParams.get('product') || undefined;
+          const productId = url.searchParams.get('productId') || undefined;
+          modalContext.openQuoteModal({ productName, productId });
+          return;
+        } catch {
+          modalContext.openQuoteModal();
+          return;
+        }
+      }
+      if (href === '/contact') {
+        e.preventDefault();
+        modalContext.openContactModal();
+        return;
+      }
+    }
+  };
+
   if (href) {
     return (
-      <Link href={href} className={combinedClasses}>
+      <Link href={href} onClick={handleLinkClick} className={combinedClasses}>
         {content}
       </Link>
     );
@@ -88,6 +131,7 @@ export default function Button({
     <button
       className={combinedClasses}
       disabled={disabled || isLoading}
+      onClick={onClick}
       {...props}
     >
       {content}

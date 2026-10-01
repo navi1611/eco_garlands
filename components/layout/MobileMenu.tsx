@@ -110,6 +110,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
             variant="primary"
             size="lg"
             className="w-full text-center"
+            onClick={() => setIsOpen(false)}
           >
             Get a Quote
           </Button>
