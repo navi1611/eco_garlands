@@ -39,7 +39,7 @@ Production-ready, highly animated, responsive website built with **Next.js App R
 ├── components/
 │   ├── layout/                 # Navbar, MobileMenu, Footer, PageContainer
 │   ├── ui/                     # Button, SectionHeading, Badge, Container, Skeleton, States
-│   ├── home/                   # Hero, Garland3D, BrandIntro, CardamomStory, ExportSection...
+│   ├── home/                   # Hero, Cardamom3D, BrandIntro, CardamomStory, ExportSection...
 │   ├── about/                  # ProcessTimeline, TimelineItem, ManufacturingProcess
 │   ├── products/               # ProductCard, ProductGrid, ProductFilters, ProductGallery...
 │   ├── quote/                  # QuoteForm, FormField, ProductSelector, QuoteSuccess
@@ -100,7 +100,7 @@ npm run start
 
 ## 🎨 3D Cardamom Garland Specification
 
-- Located in `components/home/Garland3D.tsx` (wrapped via `Garland3DWrapper.tsx` for dynamic hydration).
+- Located in `components/home/Cardamom3D.tsx` (wrapped via `Cardamom3DWrapper.tsx` for dynamic hydration). Set `NEXT_PUBLIC_SPLINE_HERO_SCENE` to a Spline scene URL to render a Spline scene (`SplineHero.tsx`) instead.
 - Procedural spindle geometry morphing with three longitudinal ridges characteristic of true green cardamom (*Elettaria cardamomum*).
 - Interspersed with whole nutmeg spheres, whole spices, and gold spacer rings.
 - Soft floating wave animation, orbit controls, warm cinematic lighting, and golden botanical particles.

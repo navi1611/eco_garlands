@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
-import Garland3DWrapper from '@/components/home/Garland3DWrapper';
+import Cardamom3DWrapper from '@/components/home/Cardamom3DWrapper';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 
 const STATS = [
@@ -104,7 +104,7 @@ export default function Hero() {
             </motion.dl>
           </motion.div>
 
-          {/* 3D garland */}
+          {/* 3D cardamom */}
           <motion.div
             style={{ y: modelY }}
             initial={{ opacity: 0, scale: 0.96 }}
@@ -112,7 +112,7 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 0.2, ease }}
             className="lg:col-span-6 relative"
           >
-            <Garland3DWrapper />
+            <Cardamom3DWrapper />
           </motion.div>
         </div>
 

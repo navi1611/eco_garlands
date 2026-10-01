@@ -140,6 +140,14 @@ body {
   to { background-position: 0 260px; }
 }
 
+/* Dashed export routes drift outwards from the origin */
+.route-flow {
+  animation: route-flow 1.6s linear infinite;
+}
+@keyframes route-flow {
+  to { stroke-dashoffset: -8; }
+}
+
 .perspective-1000 {
   perspective: 1000px;
 }
@@ -148,7 +156,8 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .gold-flow {
+  .gold-flow,
+  .route-flow {
     animation: none;
   }
 }
