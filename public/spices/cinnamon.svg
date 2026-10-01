@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 150" width="120" height="600"><defs><filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8"/></filter><linearGradient id="cb" x1="0" x2="1"><stop offset="0" stop-color="#C98652"/><stop offset=".45" stop-color="#A2613A"/><stop offset="1" stop-color="#6E3B1E"/></linearGradient></defs><path d="M7 7 Q7 4 15 4 Q23 4 23 7 L23 143 Q23 146 15 146 Q7 146 7 143 Z" transform="translate(2.2 3.4)" fill="#2B2412" opacity="0.32" filter="url(#sh)"/><g transform="rotate(0 15 75)">
+    <path d="M7 7 Q7 4 15 4 Q23 4 23 7 L23 143 Q23 146 15 146 Q7 146 7 143 Z" fill="url(#cb)"/>
+    <g stroke="#5E3219" stroke-width=".45" opacity=".35" fill="none">
+      <path d="M10.52 9 Q11.32 75 10.12 141"/><path d="M13.08 9 Q13.88 75 12.68 141"/><path d="M15.8 9 Q16.6 75 15.4 141"/><path d="M18.52 9 Q19.32 75 18.12 141"/>
+    </g>
+    <path d="M19.8 7 L20.119999999999997 143" stroke="#E2A675" stroke-width="1" opacity=".55"/>
+    <path d="M8.92 8 L8.92 142" stroke="#F0BE8E" stroke-width=".9" opacity=".35"/>
+    <ellipse cx="15" cy="6.6" rx="7.7" ry="2.4" fill="#6B3A1E"/>
+    <path d="M9 6.6 Q15 9.4 21 6.4 Q17 4.6 15 6.6" stroke="#C98A57" stroke-width=".8" fill="none"/>
+    <ellipse cx="15" cy="143.4" rx="7.7" ry="2.4" fill="#5A2F17"/>
+    <path d="M9.4 143.4 Q15 145.8 20.6 143.2 Q13 141.4 15 143.4" stroke="#B87A48" stroke-width=".8" fill="none"/>
+  </g></svg>

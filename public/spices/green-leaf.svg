@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 80" width="144" height="320"><defs><filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8"/></filter><linearGradient id="gl" x1="0" x2="1" y1="0" y2=".3"><stop offset="0" stop-color="#6E9A47"/><stop offset=".55" stop-color="#4C7A33"/><stop offset="1" stop-color="#335A24"/></linearGradient></defs>
+  <path d="M18 3 C31 20 32 54 18.6 76 L17.4 76 C4 54 5 20 18 3 Z" transform="translate(1.8 2.8)" fill="#2B2412" opacity="0.28" filter="url(#sh)"/>
+  <path d="M18 3 C31 20 32 54 18.6 76 L17.4 76 C4 54 5 20 18 3 Z" fill="url(#gl)"/>
+  <path d="M18 6 Q18.6 40 18 75" stroke="#A9C987" stroke-width=".9" fill="none" opacity=".8"/>
+  <g stroke="#9DBF7C" stroke-width=".45" fill="none" opacity=".5"><path d="M18.2 21 Q24 17 26.5 12"/><path d="M18 22 Q12 18 9.6 13"/><path d="M18.2 31 Q24 27 26.5 22"/><path d="M18 32 Q12 28 9.6 23"/><path d="M18.2 41 Q24 37 26.5 32"/><path d="M18 42 Q12 38 9.6 33"/><path d="M18.2 51 Q24 47 26.5 42"/><path d="M18 52 Q12 48 9.6 43"/><path d="M18.2 61 Q24 57 26.5 52"/><path d="M18 62 Q12 58 9.6 53"/></g>
+  <ellipse cx="12.5" cy="30" rx="2.4" ry="12" fill="#FFFFFF" opacity=".14"/></svg>

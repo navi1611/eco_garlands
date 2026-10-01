@@ -140,6 +140,25 @@ body {
   to { background-position: 0 260px; }
 }
 
+/* Hero: sunlight drifting across the parchment, and the scroll cue */
+.hero-light {
+  animation: hero-light 28s ease-in-out infinite alternate;
+}
+.hero-light-alt {
+  animation: hero-light 34s ease-in-out infinite alternate-reverse;
+}
+@keyframes hero-light {
+  from { transform: translate3d(-4%, -3%, 0) scale(1); }
+  to { transform: translate3d(6%, 4%, 0) scale(1.08); }
+}
+.hero-cue {
+  animation: hero-cue 2.8s ease-in-out infinite;
+}
+@keyframes hero-cue {
+  0%, 100% { transform: translateY(-1px); }
+  50% { transform: translateY(3px); }
+}
+
 /* Dashed export routes drift outwards from the origin */
 .route-flow {
   animation: route-flow 1.6s linear infinite;
@@ -157,7 +176,10 @@ body {
     scroll-behavior: auto;
   }
   .gold-flow,
-  .route-flow {
+  .route-flow,
+  .hero-light,
+  .hero-light-alt,
+  .hero-cue {
     animation: none;
   }
 }

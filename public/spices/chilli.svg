@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 150" width="160" height="600"><defs><filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8"/></filter><linearGradient id="rc" x1="0" x2="1" y1="0" y2=".15"><stop offset="0" stop-color="#C7392B"/><stop offset=".5" stop-color="#9A1E15"/><stop offset="1" stop-color="#5E0F0A"/></linearGradient></defs>
+  <path d="M17 16 C27 15 30 24 29.5 40 C29 66 28 96 30 120 C31 132 30.5 141 27.5 146 C24 141 21.5 128 19.5 114 C16 90 11 62 10 40 C9.5 26 11 17 17 16 Z" transform="translate(2.2 3.4)" fill="#2B2412" opacity="0.32" filter="url(#sh)"/>
+  <path d="M17 16 C27 15 30 24 29.5 40 C29 66 28 96 30 120 C31 132 30.5 141 27.5 146 C24 141 21.5 128 19.5 114 C16 90 11 62 10 40 C9.5 26 11 17 17 16 Z" fill="url(#rc)"/>
+  <g stroke="#4A0A06" stroke-width=".7" fill="none" opacity=".35">
+    <path d="M11 34 Q19 38 29 33"/><path d="M11.5 52 Q20 49 29 54"/><path d="M13 72 Q21 76 28.6 70"/>
+    <path d="M15.5 92 Q22 89 28.6 94"/><path d="M18.6 110 Q24 113 29.4 108"/><path d="M22 127 Q26 125 30 129"/>
+  </g>
+  <path d="M15 26 C13.5 50 16 80 21 112" stroke="#F0786A" stroke-width="2.2" fill="none" opacity=".45" stroke-linecap="round"/>
+  <path d="M15.4 30 C14.6 46 15.6 64 17.6 80" stroke="#FFFFFF" stroke-width=".9" fill="none" opacity=".4" stroke-linecap="round"/>
+  <path d="M10 22 Q14 13 19.5 13 Q26 13 30 22 Q24 18 19.5 19.5 Q14 18 10 22 Z" fill="#6A6431"/>
+  <path d="M19.5 14 Q19 7 22.5 2.5" stroke="#7A7238" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>

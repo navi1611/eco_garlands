@@ -18,12 +18,15 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <BrandIntro />
-      <CardamomStory />
-      <GarlandCategories />
-      <Applications />
-      <ExportSection />
-      <HomeCTA />
+      {/* The rest of the page rises over the pinned hero like a curtain */}
+      <div className="relative z-10 -mt-[100svh] motion-reduce:mt-0 rounded-t-[2rem] overflow-clip bg-white shadow-[0_-30px_60px_-30px_rgba(11,34,25,0.28)]">
+        <BrandIntro />
+        <CardamomStory />
+        <GarlandCategories />
+        <Applications />
+        <ExportSection />
+        <HomeCTA />
+      </div>
     </>
   );
 }

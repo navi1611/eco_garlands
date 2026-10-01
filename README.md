@@ -3,7 +3,7 @@
 > **Handcrafted Natural Cardamom, Nut & Spice Garlands**  
 > *Nature Crafted. Tradition Inspired. Globally Delivered.*
 
-Production-ready, highly animated, responsive website built with **Next.js App Router**, **TypeScript**, **Tailwind CSS**, **Three.js / React Three Fiber**, **Supabase PostgreSQL**, and **Zod**.
+Production-ready, highly animated, responsive website built with **Next.js App Router**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, **Supabase PostgreSQL**, and **Zod**.
 
 ---
 
@@ -12,7 +12,7 @@ Production-ready, highly animated, responsive website built with **Next.js App R
 - **Visual Tone**: Luxury botanical brand + Indian craftsmanship + modern international presentation.
 - **Color System**: Cream white (`#F8F4E8`), Soft Cream (`#FFFDF5`), Forest Emerald (`#164A36`), Dark Emerald (`#0D3527`), Gold (`#C9A227`), Botanical Green (`#6F8F72`), Charcoal (`#1E2923`).
 - **Typography**: Cormorant Garamond (Editorial Serif for headings) + Plus Jakarta Sans (Modern UI Sans).
-- **Rendering Architecture**: React Server Components (RSC) and SSR by default; Client Components used strictly for isolated interactive components (3D garland canvas, mobile menu, filter controls, gallery switcher, quote form).
+- **Rendering Architecture**: React Server Components (RSC) and SSR by default; Client Components used strictly for isolated interactive components (hero garland animation, mobile menu, filter controls, gallery switcher, quote form).
 - **No Inline Styles**: 100% styled via Tailwind CSS design tokens.
 
 ---
@@ -39,7 +39,7 @@ Production-ready, highly animated, responsive website built with **Next.js App R
 ├── components/
 │   ├── layout/                 # Navbar, MobileMenu, Footer, PageContainer
 │   ├── ui/                     # Button, SectionHeading, Badge, Container, Skeleton, States
-│   ├── home/                   # Hero, Cardamom3D, BrandIntro, CardamomStory, ExportSection...
+│   ├── home/                   # Hero (+ hero/ garland layout, spice assets, particles), BrandIntro, ExportSection...
 │   ├── about/                  # ProcessTimeline, TimelineItem, ManufacturingProcess
 │   ├── products/               # ProductCard, ProductGrid, ProductFilters, ProductGallery...
 │   ├── quote/                  # QuoteForm, FormField, ProductSelector, QuoteSuccess
@@ -98,13 +98,39 @@ npm run start
 
 ---
 
-## 🎨 3D Cardamom Garland Specification
+## 🌿 Hero: "Nature, gathered beautifully."
 
-- Located in `components/home/Cardamom3D.tsx` (wrapped via `Cardamom3DWrapper.tsx` for dynamic hydration). Set `NEXT_PUBLIC_SPLINE_HERO_SCENE` to a Spline scene URL to render a Spline scene (`SplineHero.tsx`) instead.
-- Procedural spindle geometry morphing with three longitudinal ridges characteristic of true green cardamom (*Elettaria cardamomum*).
-- Interspersed with whole nutmeg spheres, whole spices, and gold spacer rings.
-- Soft floating wave animation, orbit controls, warm cinematic lighting, and golden botanical particles.
-- Fully supports `prefers-reduced-motion` and contains a graceful static fallback when WebGL is unavailable.
+The home hero is a scroll-driven sequence in which individual spices gather into a hand-tied garland around the brand name. It uses no WebGL: spice cutouts are moved with GPU transforms from a single `requestAnimationFrame` loop, plus a small 2D canvas for pollen.
+
+| File | Role |
+| --- | --- |
+| `components/home/Hero.tsx` | Sticky scroll stage, animation loop, copy, CTA |
+| `components/home/hero/garlandLayout.ts` | Garland shape, where every spice rests, its flight path and timing |
+| `components/home/hero/spiceAssets.ts` | Spice image manifest (paths, display size, aspect ratio) |
+| `components/home/hero/particles.ts` | Drifting pollen motes (2D canvas) |
+| `public/spices/*.svg` | Placeholder spice cutouts |
+
+**Sequence** (assembly progress runs from 0 to 1 over roughly the first 1.2 screens of scrolling):
+
+- **On load (0–3 s):** the parchment and sunlight fade in; *J The Divine / Eco Valley* resolves out of a soft blur; about 17 "hero" spices (star anise, chillies, cinnamon, turmeric) appear one by one at the edges and drift slowly.
+- **0.02–0.40:** the garland cord draws itself, and the hero spices swirl inwards along curved paths.
+- **0.12–0.92:** cardamom pods thread onto the cord from the top downwards, followed by bay leaves, cloves and peppercorns; the pendant and tassels arrive last.
+- **Throughout:** chapter lines cross-fade (*From the valley's soil → Cardamom · Clove · Cinnamon · Star anise → Gathered by hand*), the view pushes in slightly, and the copy settles on the tagline *Nature, gathered beautifully.*
+- **Formed:** no spinning. The garland breathes, sways a little and catches drifting pollen; leaves flick now and then as if in a breeze.
+- **Curtain:** the rest of the page rises over the pinned hero with rounded corners while the hero dims and steps back.
+
+**Accessibility and performance**
+
+- `prefers-reduced-motion`: there's no animation loop. The finished garland is laid out in pure CSS, and the hero is a normal single screen.
+- Phones and low-powered devices (≤4 CPU cores, ≤4 GB memory or Save-Data) get fewer, larger pods. Low-powered devices also skip the pollen and the pod micro-motion.
+- The loop pauses when the hero is off screen, writes only `transform` and `opacity`, and keeps pixel paths cached until a resize.
+
+**Replacing the placeholder spices with real assets**
+
+1. Shoot or render each spice as a cutout on a transparent background, long axis pointing **up**, lit from the **top-left**, with a soft contact shadow down-right. WebP with alpha at 3–4× display size (roughly 200–400 px on the long side) works well.
+2. Put the files in `public/spices/` and point `src` in `components/home/hero/spiceAssets.ts` at them. Add several variants per spice (`src: [...]`) so repeated pods don't look stamped.
+3. Update `aspect` (height ÷ width) to match each new image. Adjust `width` if a spice should look bigger or smaller on the garland.
+4. To use real 3D models, render them to images from a few angles (Blender, KeyShot or Spline exports) and use those as variants. That keeps the realism of 3D without running real-time 3D in the browser.
 
 ---
 

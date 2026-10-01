@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useReducedMotion } from 'framer-motion';
 import { MAP_DOTS, MAP_HEIGHT, MAP_PINS, MAP_WIDTH } from '@/components/home/worldMapData';
 
 type Point = readonly [number, number];
@@ -158,7 +157,6 @@ const LABEL_POSITION: Record<Route['align'], string> = {
 };
 
 export default function ExportRouteMap() {
-  const reducedMotion = useReducedMotion();
   const routes = ROUTES.map((route) => ({ route, arc: arcFor(MAP_PINS[route.key], route.lift) }));
 
   return (
@@ -194,7 +192,7 @@ export default function ExportRouteMap() {
               strokeDasharray="3 5"
               strokeLinecap="round"
               opacity={0.55}
-              className={reducedMotion ? undefined : 'route-flow'}
+              className="route-flow"
             />
           ))}
 
@@ -209,27 +207,29 @@ export default function ExportRouteMap() {
             );
           })}
 
-          {/* Planes */}
-          {routes.map(({ route, arc }) => {
-            if (reducedMotion) {
+          {/* Planes: both versions are rendered and CSS picks one, so the
+              server and client markup always match */}
+          <g className="motion-reduce:hidden">
+            {routes.map(({ route, arc }) => (
+              <AnimatedFlight key={route.key} route={route} d={arc.d} />
+            ))}
+            {[0, 1.3].map((delay) => (
+              <circle key={delay} cx={ORIGIN[0]} cy={ORIGIN[1]} r={8} fill="none" stroke="#A9884F" strokeWidth={1.4}>
+                <animate attributeName="r" values="8;30" dur="2.6s" begin={`${delay}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.7;0" dur="2.6s" begin={`${delay}s`} repeatCount="indefinite" />
+              </circle>
+            ))}
+          </g>
+          <g className="hidden motion-reduce:inline">
+            {routes.map(({ route, arc }) => {
               const p = arc.at(route.still ?? 0.55);
               return (
                 <g key={route.key} transform={`translate(${p.x} ${p.y}) rotate(${p.angle})`}>
                   <Plane />
                 </g>
               );
-            }
-            return <AnimatedFlight key={route.key} route={route} d={arc.d} />;
-          })}
-
-          {/* Origin hub */}
-          {!reducedMotion &&
-            [0, 1.3].map((delay) => (
-              <circle key={delay} cx={ORIGIN[0]} cy={ORIGIN[1]} r={8} fill="none" stroke="#A9884F" strokeWidth={1.4}>
-                <animate attributeName="r" values="8;30" dur="2.6s" begin={`${delay}s`} repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.7;0" dur="2.6s" begin={`${delay}s`} repeatCount="indefinite" />
-              </circle>
-            ))}
+            })}
+          </g>
           <circle cx={ORIGIN[0]} cy={ORIGIN[1]} r={13} fill="#A9884F" opacity={0.18} />
           <circle cx={ORIGIN[0]} cy={ORIGIN[1]} r={6.5} fill="#A9884F" stroke="#FFFFFF" strokeWidth={2} />
         </svg>
