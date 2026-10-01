@@ -10,90 +10,8 @@ import {
   useTransform,
   useVelocity,
 } from 'framer-motion';
-import TimelineItem, { TimelineStage } from './TimelineItem';
-
-const TIMELINE_STAGES: TimelineStage[] = [
-  {
-    step: '01',
-    title: 'Seed Selection',
-    subtitle: 'The Beginning of the Botanical Journey',
-    description:
-      'Identifying healthy parent crops from shaded tropical valley microclimates, selecting dense botanical varietals that yield uniform three-ribbed cardamom pods.',
-    details: ['Highland altitude selection', 'Viable heirloom seeds', 'Soil mineral monitoring'],
-    transformation: 'Raw Seed → Germination Nursery',
-    badge: 'Origin',
-  },
-  {
-    step: '02',
-    title: 'Cultivation',
-    subtitle: 'Nurtured in Tropical Shaded Canopies',
-    description:
-      'Cultivated beneath layered forest foliage where moisture, gentle filtered sunlight, and natural biodiversity support steady root development.',
-    details: ['Organic soil stewardship', 'Shade-grown canopy', 'Naturally pollinated'],
-    transformation: 'Seed → Sprouting Plant → Mature Fruiting Crop',
-    badge: 'Growth',
-  },
-  {
-    step: '03',
-    title: 'Harvesting',
-    subtitle: 'Selective Hand Harvesting',
-    description:
-      'Pod clusters are carefully harvested individually by hand precisely as they reach optimal plumpness and firmness, avoiding mechanical bruising.',
-    details: ['Hand-plucked by experienced harvesters', 'Stem preservation', 'Zero mechanical bruising'],
-    transformation: 'Mature Cluster → Gentle Harvest',
-    badge: 'Harvest',
-  },
-  {
-    step: '04',
-    title: 'Material Preparation',
-    subtitle: 'Grading, Cleaning & Gentle Sun Curing',
-    description:
-      'Harvested pods undergo multiple cleaning stages, separation of loose husks, gentle curing to lock in color and aromatics, followed by sieve-grading by millimeter diameter.',
-    details: ['Hand sorting & screening', 'Aroma preservation drying', 'Uniform diameter sizing'],
-    transformation: 'Raw Pods → Cleaned & Graded Botanicals',
-    badge: 'Preparation',
-  },
-  {
-    step: '05',
-    title: 'Garland Craftsmanship',
-    subtitle: 'Artisan Assembly & Traditional Weaving',
-    description:
-      'Skilled garland makers thread graded pods onto natural unbleached cotton cord, integrating whole nutmeg, star anise, and spice rosettes in harmonious symmetry.',
-    details: ['Generational knotting', 'Structural tensile strength', 'Artisanal spice patterns'],
-    transformation: 'Cardamom & Spices → Handcrafted Garland',
-    badge: 'Craft',
-  },
-  {
-    step: '06',
-    title: 'Quality Control',
-    subtitle: 'Inspection, Symmetry & Presentation Checks',
-    description:
-      'Each finished garland is inspected for weight balance, pod alignment, absence of cracked pods, and overall visual balance prior to packaging.',
-    details: ['Visual symmetry review', 'Aroma integrity audit', 'Tension & flexibility check'],
-    transformation: 'Artisan Bench → Verified Piece',
-    badge: 'Verification',
-  },
-  {
-    step: '07',
-    title: 'Packaging',
-    subtitle: 'Rigid Transport Preparation',
-    description:
-      'Encased in moisture-resistant protective cushions within sturdy presentation or shipping boxes designed to prevent crushing during domestic or overseas transit.',
-    details: ['Bespoke cushioned cradles', 'Desiccant moisture guard', 'Presentation-ready encasement'],
-    transformation: 'Finished Garland → Transit Ready',
-    badge: 'Protection',
-  },
-  {
-    step: '08',
-    title: 'Global Export',
-    subtitle: 'From India to Global Celebrations',
-    description:
-      'Coordinated dispatch for weddings, temples, cultural festivals, and hospitality venues across international regions, bringing natural Indian craftsmanship to the world.',
-    details: ['Phytosanitary documentation', 'Air freight priority', 'Worldwide destination reach'],
-    transformation: 'India → The World',
-    badge: 'Delivery',
-  },
-];
+import TimelineItem from './TimelineItem';
+import { PROCESS_STAGES } from './processStages';
 
 // A small green cardamom pod drawn in SVG, used as the travelling seed
 function SeedPod() {
@@ -205,6 +123,9 @@ export default function ProcessTimeline() {
     updateActive(v < boundsRef.current.start ? -1 : seedFrac.get());
   });
 
+  const currentIndex = clamp(activeCount - 1, 0, PROCESS_STAGES.length - 1);
+  const current = PROCESS_STAGES[currentIndex];
+
   const lineBox = {
     top: `${bounds.start * 100}%`,
     height: `${(bounds.end - bounds.start) * 100}%`,
@@ -212,6 +133,36 @@ export default function ProcessTimeline() {
 
   return (
     <div ref={containerRef} className="relative py-8">
+      {/* Stage tracker: stays in view while reading, and jumps to any stage */}
+      <div className="sticky top-24 z-40 flex justify-center mb-10 pointer-events-none">
+        <nav
+          aria-label="Timeline progress"
+          className="pointer-events-auto flex items-center gap-3 sm:gap-4 rounded-full bg-white/90 backdrop-blur-md border border-line shadow-[var(--shadow-soft)] pl-4 pr-3 py-2 max-w-full"
+        >
+          <span className="text-[11px] tabular-nums text-charcoal/50 whitespace-nowrap">
+            {current.step} / {String(PROCESS_STAGES.length).padStart(2, '0')}
+          </span>
+          <span className="font-serif text-sm text-emerald-dark whitespace-nowrap truncate">{current.title}</span>
+          <span className="flex items-center gap-1.5">
+            {PROCESS_STAGES.map((s, i) => (
+              <a
+                key={s.step}
+                href={`#stage-${s.step}`}
+                aria-label={`Go to stage ${s.step}, ${s.title}`}
+                aria-current={i === currentIndex ? 'step' : undefined}
+                className={`block rounded-full transition-all duration-300 ${
+                  i === currentIndex
+                    ? 'w-5 h-2 bg-emerald-dark'
+                    : i < currentIndex
+                      ? 'w-2 h-2 bg-gold hover:bg-gold-dark'
+                      : 'w-2 h-2 bg-line-strong hover:bg-gold/60'
+                }`}
+              />
+            ))}
+          </span>
+        </nav>
+      </div>
+
       {/* Track: connects stage 01 through to the final stage */}
       <div
         style={lineBox}
@@ -243,7 +194,7 @@ export default function ProcessTimeline() {
       )}
 
       <div className="relative z-10">
-        {TIMELINE_STAGES.map((stage, idx) => (
+        {PROCESS_STAGES.map((stage, idx) => (
           <TimelineItem
             key={stage.step}
             stage={stage}

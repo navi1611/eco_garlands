@@ -159,6 +159,58 @@ body {
   50% { transform: translateY(3px); }
 }
 
+/* About: the quick view's autoplay countdown under the active stage */
+@keyframes quick-countdown {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* About: stage illustrations come alive once their stage is reached */
+.stage-art .art-sway,
+.stage-art .art-spin,
+.stage-art .art-pop {
+  transform-box: fill-box;
+}
+.stage-art .art-sway { transform-origin: 50% 100%; }
+.stage-art .art-spin,
+.stage-art .art-pop { transform-origin: center; }
+.stage-art[data-active="true"] .art-sway { animation: art-sway 3.6s ease-in-out infinite; }
+.stage-art[data-active="true"] .art-spin { animation: art-spin 16s linear infinite; }
+.stage-art[data-active="true"] .art-drop { animation: art-drop 2.6s ease-in infinite; }
+.stage-art[data-active="true"] .art-scan { animation: art-scan 3.2s ease-in-out infinite; }
+.stage-art[data-active="true"] .art-pop { animation: art-pop 3.2s ease-in-out infinite; }
+.stage-art[data-active="true"] .art-shimmer { animation: art-shimmer 3s ease-in-out infinite; }
+.stage-art[data-active="true"] .art-fly { animation: art-fly 3s ease-in-out infinite; }
+@keyframes art-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes art-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes art-drop {
+  0% { transform: translateY(-6px); opacity: 0; }
+  20% { opacity: 1; }
+  70% { transform: translateY(14px); opacity: 1; }
+  100% { transform: translateY(18px); opacity: 0; }
+}
+@keyframes art-scan {
+  0%, 100% { transform: translate(-3px, -2px); }
+  50% { transform: translate(3px, 2px); }
+}
+@keyframes art-pop {
+  0%, 100% { transform: scale(0.92); }
+  50% { transform: scale(1.06); }
+}
+@keyframes art-shimmer {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+@keyframes art-fly {
+  0%, 100% { transform: translate(-5px, 2px); }
+  50% { transform: translate(2px, -1px); }
+}
+
 /* Dashed export routes drift outwards from the origin */
 .route-flow {
   animation: route-flow 1.6s linear infinite;
@@ -179,7 +231,8 @@ body {
   .route-flow,
   .hero-light,
   .hero-light-alt,
-  .hero-cue {
-    animation: none;
+  .hero-cue,
+  .stage-art * {
+    animation: none !important;
   }
 }

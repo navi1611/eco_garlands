@@ -8,7 +8,7 @@ import Button from '@/components/ui/Button';
 
 export default function HomeCTA() {
   return (
-    <section className="py-24 lg:py-32 bg-canvas">
+    <section className="py-24 lg:py-32 bg-canvas/35">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 32 }}

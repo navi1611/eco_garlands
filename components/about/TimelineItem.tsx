@@ -1,15 +1,7 @@
 import React from 'react';
 import FadeIn from '@/components/animation/FadeIn';
-
-export interface TimelineStage {
-  step: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  details: string[];
-  transformation?: string;
-  badge?: string;
-}
+import type { TimelineStage } from './processStages';
+import StageIllustration from './StageIllustrations';
 
 interface TimelineItemProps {
   stage: TimelineStage;
@@ -22,7 +14,11 @@ export default function TimelineItem({ stage, index, isActive, nodeRef }: Timeli
   const isEven = index % 2 === 0;
 
   return (
-    <div className="relative flex items-start md:items-center w-full mb-14 sm:mb-20 last:mb-0">
+    // `id` lets the quick view and the stage tracker link straight to a stage
+    <div
+      id={`stage-${stage.step}`}
+      className="relative flex items-start md:items-center w-full mb-14 sm:mb-20 last:mb-0 scroll-mt-40"
+    >
       {/* Milestone node — fills in once the travelling seed reaches it */}
       <div
         ref={nodeRef}
@@ -64,22 +60,35 @@ export default function TimelineItem({ stage, index, isActive, nodeRef }: Timeli
                 : 'border-line/70 shadow-none opacity-70'
             }`}
           >
-            <div className={`flex items-center gap-3 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
-              {stage.badge && (
-                <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium">
-                  {stage.badge}
-                </span>
-              )}
-              <span className="w-4 h-px bg-line-strong" />
-              <span className="text-[10px] uppercase tracking-[0.22em] text-charcoal/40">
-                Stage {stage.step}
-              </span>
-            </div>
+            {/* Illustration sits on the card's outer side, next to its heading */}
+            <div className={`flex items-center gap-5 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+              <StageIllustration
+                step={stage.step}
+                active={isActive}
+                className={`w-20 h-20 sm:w-24 sm:h-24 shrink-0 transition-transform duration-700 ${
+                  isActive ? 'scale-100' : 'scale-90'
+                }`}
+              />
+              <div className="min-w-0">
+                <div className={`flex items-center gap-3 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                  <stage.icon className="w-4 h-4 text-emerald/70" strokeWidth={1.5} aria-hidden />
+                  {stage.badge && (
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium">
+                      {stage.badge}
+                    </span>
+                  )}
+                  <span className="w-4 h-px bg-line-strong" />
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-charcoal/40 whitespace-nowrap">
+                    Stage {stage.step}
+                  </span>
+                </div>
 
-            <h3 className="mt-4 font-serif text-2xl sm:text-[1.75rem] text-emerald-dark tracking-[-0.01em]">
-              {stage.title}
-            </h3>
-            <p className="mt-1 text-sm text-charcoal/50">{stage.subtitle}</p>
+                <h3 className="mt-3 font-serif text-2xl sm:text-[1.75rem] text-emerald-dark tracking-[-0.01em] text-balance">
+                  {stage.title}
+                </h3>
+                <p className="mt-1 text-sm text-charcoal/50">{stage.subtitle}</p>
+              </div>
+            </div>
 
             <p className="mt-4 text-[15px] text-charcoal/65 leading-[1.75]">{stage.description}</p>
 

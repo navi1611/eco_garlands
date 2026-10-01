@@ -7,6 +7,7 @@ import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
 import { ArrowUpRight } from 'lucide-react';
+import LogoMark from '@/components/ui/Logo';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -48,9 +49,10 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald/30 rounded-md"
           >
-            <div className="w-9 h-9 rounded-full bg-sage border border-sage-line flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-              <span className="font-serif text-base text-emerald-dark leading-none">J</span>
-            </div>
+            <LogoMark
+              title=""
+              className="w-10 h-10 shrink-0 drop-shadow-[0_2px_6px_rgba(11,34,25,0.18)] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3"
+            />
             <div className="flex flex-col">
               <span className="font-serif text-[17px] sm:text-lg tracking-[-0.01em] text-emerald-dark leading-tight">
                 J The Divine Eco Valley

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs>
+<linearGradient id="if" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D8EBBF"/><stop offset="1" stop-color="#86B06A"/></linearGradient>
+<radialGradient id="id" cx="0.35" cy="0.3" r="0.85"><stop offset="0" stop-color="#2F5D40"/><stop offset="1" stop-color="#173828"/></radialGradient>
+<mask id="im" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><path d="M36 13 L36 39.5 C36 49.5 23 51.5 20 42.6" stroke="#fff" stroke-width="6.6" stroke-linecap="round" fill="none"/></mask></defs>
+<circle cx="32" cy="32" r="31" fill="url(#id)"/>
+<circle cx="32" cy="32" r="28.2" fill="none" stroke="#F4EDE0" stroke-opacity="0.55" stroke-width=".6"/>
+
+<path d="M39 21.6 C42 16 46.4 12.8 51.4 11.8 C48 16 43.8 20 39 21.6 Z" fill="url(#if)"/>
+<path d="M39 21.6 C44 15.6 47.8 13 51.4 11.8" stroke="#FFFFFF" stroke-width=".4" fill="none" opacity=".7"/>
+<path d="M39.2 23.2 C43 21.2 47.2 21.1 51 22.8 C46.8 24.3 42.8 24.5 39.2 23.2 Z" fill="url(#if)" opacity=".92"/>
+<path d="M32.8 17.2 C30.2 13.8 27 12.1 23.8 11.8 C26.2 14.8 29.4 16.8 32.8 17.2 Z" fill="url(#if)" opacity=".85"/>
+<g mask="url(#im)"><rect width="64" height="64" fill="#B7D39A"/>
+<path d="M38.6 12 L38.6 39.5 C38.6 52.5 21.4 54.6 17.4 43.4" stroke="#6E9A5C" stroke-width="3" fill="none" opacity=".75"/>
+<path d="M34.2 12 L34.2 39.5 C34.2 46.6 26.6 48.4 22.6 42" stroke="#ECF6DC" stroke-width="1.6" fill="none" opacity=".8"/>
+<g stroke-linecap="round" fill="none">
+<path d="M32 22.6 Q36 23.8 40 22.6" stroke="#55804A" stroke-width="1.2"/><path d="M32 21.5 Q36 22.7 40 21.5" stroke="#F6FBEE" stroke-width=".55" opacity=".85"/>
+<path d="M32 32 Q36 33.2 40 32" stroke="#55804A" stroke-width="1.2"/><path d="M32 30.9 Q36 32.1 40 30.9" stroke="#F6FBEE" stroke-width=".55" opacity=".85"/>
+<path d="M28.2 44.2 Q30.2 47.8 29.6 51.6" stroke="#55804A" stroke-width="1.2"/><path d="M29.3 44 Q31.3 47.6 30.8 51.4" stroke="#F6FBEE" stroke-width=".55" opacity=".75"/>
+</g></g>
+<ellipse cx="36" cy="13" rx="3.3" ry="1.1" fill="#7FA36B"/><ellipse cx="36" cy="12.85" rx="2.3" ry=".66" fill="#3B6330"/></svg>

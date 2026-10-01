@@ -12,7 +12,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Applications() {
   return (
-    <section className="py-24 lg:py-36 bg-canvas">
+    <section className="py-24 lg:py-36 bg-canvas/35">
       <Container>
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <SectionHeading

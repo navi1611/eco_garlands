@@ -30,7 +30,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ExportSection() {
   return (
-    <section className="py-24 lg:py-36 bg-white border-y border-line">
+    <section className="py-24 lg:py-36 bg-white/45 border-y border-line/60">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
           <div className="lg:col-span-5">

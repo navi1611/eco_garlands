@@ -4,6 +4,7 @@ import Image from 'next/image';
 import PageContainer from '@/components/layout/PageContainer';
 import Button from '@/components/ui/Button';
 import FadeIn from '@/components/animation/FadeIn';
+import ParchmentBackground from '@/components/ui/ParchmentBackground';
 
 export const metadata: Metadata = {
   title: 'Garland Applications — Ceremonies, Weddings & Cultural Spaces',
@@ -82,7 +83,9 @@ export default function ApplicationsPage() {
   ];
 
   return (
-    <div className="bg-cream">
+    <div className="relative">
+      <ParchmentBackground />
+      <div className="relative z-10">
       <PageContainer
         badge="Cultural Context"
         title="Designed to Be Part of Meaningful Moments"
@@ -165,6 +168,7 @@ export default function ApplicationsPage() {
           })}
         </div>
       </PageContainer>
+      </div>
     </div>
   );
 }

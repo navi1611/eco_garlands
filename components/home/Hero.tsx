@@ -5,6 +5,7 @@ import { animate, motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { buildGarland, type Density } from '@/components/home/hero/garlandLayout';
 import { createParticles } from '@/components/home/hero/particles';
+import ParchmentBackground from '@/components/ui/ParchmentBackground';
 
 /*
  * Hero: "Nature, gathered beautifully."
@@ -12,8 +13,9 @@ import { createParticles } from '@/components/home/hero/particles';
  * Spices rest scattered around the brand name. As the visitor scrolls,
  * the cord draws itself and each spice travels along a curved path to its
  * place, until a hand-tied garland frames the name. The finished garland
- * never spins; it breathes, sways and catches drifting pollen. A curtain
- * (the next section) then rises over it.
+ * never spins; it breathes, sways and catches drifting pollen. As the
+ * page content scrolls in, the garland and name fade back and stay fixed
+ * behind it as a translucent backdrop.
  *
  * Everything moves with transforms and opacity only, from a single
  * requestAnimationFrame loop. Reduced-motion visitors get the finished
@@ -29,6 +31,9 @@ const CHAPTERS = [
   { text: 'Gathered by hand, thread by thread', from: 0.46, to: 0.68 },
 ];
 const TAGLINE_FROM = 0.76;
+// How visible the garland and the name stay behind the page content
+const BACKDROP_OPACITY = 0.45;
+const BACKDROP_TITLE_OPACITY = 0.16;
 
 const clamp = (v: number, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
 const smoothstep = (a: number, b: number, v: number) => {
@@ -55,10 +60,6 @@ const clientDensity = (): Density =>
   window.innerWidth < 640 || isLowPower() ? 'compact' : 'full';
 const serverDensity = (): Density => 'full';
 
-// Fine paper grain, generated once by the browser
-const GRAIN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
-
 export default function Hero() {
   const density = useSyncExternalStore(noSubscribe, clientDensity, serverDensity);
   const garland = useMemo(() => buildGarland(density), [density]);
@@ -75,7 +76,6 @@ export default function Hero() {
   const chapterRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
-  const dimRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function Hero() {
       unit = measure.offsetWidth / 1000;
       sectionTop = section.getBoundingClientRect().top + window.scrollY;
       range = Math.max(1, section.offsetHeight - vh);
-      // The next section starts rising one viewport before the hero unpins
+      // Page content starts rising one viewport before the hero spacer ends
       curtainStart = clamp((section.offsetHeight - 2 * vh) / range, 0.3, 0.9);
 
       items.forEach((it, i) => {
@@ -179,15 +179,17 @@ export default function Hero() {
       const formed = smoothstep(0.75, 1, a);
       const push = smoothstep(curtainStart * 0.3, curtainStart * 0.95, smooth);
       const curtain = smoothstep(curtainStart, 1, smooth);
+      const fade = 1 - (1 - BACKDROP_OPACITY) * curtain;
 
       pointerX += (targetX - pointerX) * (1 - Math.exp(-dt * 2.5));
       pointerY += (targetY - pointerY) * (1 - Math.exp(-dt * 2.5));
 
       // Camera: a slow push-in, a barely-there breath once formed, and a
-      // step back as the curtain rises
+      // step back as the garland settles into the backdrop
       const breathe = 1 + Math.sin(time * 0.9) * 0.006 * formed;
       const scale = (0.9 + 0.1 * push) * (1 - 0.05 * curtain) * breathe;
-      stage.style.transform = `translate3d(${(pointerX * 10).toFixed(2)}px, ${(pointerY * 8 - curtain * vh * 0.05).toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+      stage.style.transform = `translate3d(${(pointerX * 10).toFixed(2)}px, ${(pointerY * 8).toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+      stage.style.opacity = fade.toFixed(3);
 
       if (cord) cord.style.strokeDashoffset = (1 - smoothstep(0.02, 0.4, a)).toFixed(4);
       if (tassels) tassels.style.opacity = smoothstep(0.58, 0.72, a).toFixed(3);
@@ -258,7 +260,7 @@ export default function Hero() {
       const title = titleRef.current;
       if (title) {
         title.style.transform = `translate3d(${(-pointerX * 4).toFixed(2)}px, ${(-pointerY * 3).toFixed(2)}px, 0)`;
-        title.style.opacity = (1 - curtain * 0.5).toFixed(3);
+        title.style.opacity = (1 - (1 - BACKDROP_TITLE_OPACITY) * curtain).toFixed(3);
       }
       const cta = ctaRef.current;
       if (cta) {
@@ -266,14 +268,21 @@ export default function Hero() {
         cta.style.opacity = op.toFixed(3);
         cta.style.pointerEvents = op > 0.2 ? 'auto' : 'none';
       }
-      if (dimRef.current) dimRef.current.style.opacity = (curtain * 0.35).toFixed(3);
 
       particles?.draw(dt, time, formed);
+
+      // Once the hero has scrolled away, keep going only until the backdrop
+      // has settled, then freeze it so reading the page costs nothing
+      const settled = Math.abs(progressNow() - smooth) < 0.0005 && time > 4;
+      if (!visible && settled) {
+        running = false;
+        return;
+      }
       raf = requestAnimationFrame(frame);
     };
 
-    // Only animate while the hero is on screen
     let running = false;
+    let visible = true;
     const start = () => {
       if (running) return;
       running = true;
@@ -284,7 +293,12 @@ export default function Hero() {
       running = false;
       cancelAnimationFrame(raf);
     };
-    const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()));
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      start();
+    });
+    const onScroll = () => start();
+    window.addEventListener('scroll', onScroll, { passive: true });
     io.observe(section);
     const ro = new ResizeObserver(layout);
     ro.observe(sticky);
@@ -295,6 +309,7 @@ export default function Hero() {
       io.disconnect();
       ro.disconnect();
       window.removeEventListener('pointermove', onPointer);
+      window.removeEventListener('scroll', onScroll);
     };
   }, [garland]);
 
@@ -342,13 +357,10 @@ export default function Hero() {
     >
       <div
         ref={stickyRef}
-        className="sticky top-0 h-svh min-h-[560px] overflow-hidden motion-reduce:relative [--stage:min(112vw,72svh)] sm:[--stage:min(88vw,82svh)] [--u:calc(var(--stage)/1000)]"
+        className="fixed inset-x-0 top-0 z-0 h-svh min-h-[560px] overflow-hidden motion-reduce:relative [--stage:min(112vw,72svh)] sm:[--stage:min(88vw,82svh)] [--u:calc(var(--stage)/1000)]"
       >
         {/* Atmosphere: parchment, drifting sunlight, paper grain */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_44%,#FBF8F1_0%,#F4EDE0_52%,#E8DCC6_100%)]" />
-        <div className="hero-light absolute -top-[30%] -left-[20%] w-[90vmax] h-[90vmax] rounded-full bg-[radial-gradient(circle,rgba(226,186,110,0.28)_0%,rgba(226,186,110,0)_62%)] pointer-events-none" />
-        <div className="hero-light-alt absolute -bottom-[35%] -right-[25%] w-[80vmax] h-[80vmax] rounded-full bg-[radial-gradient(circle,rgba(91,119,101,0.16)_0%,rgba(91,119,101,0)_60%)] pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.28] pointer-events-none" style={{ backgroundImage: GRAIN }} />
+        <ParchmentBackground className="absolute inset-0" />
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" />
 
         {/* Measures one stage width in pixels for the animation loop */}
@@ -482,8 +494,6 @@ export default function Hero() {
           </span>
         </button>
 
-        {/* Dims slightly as the next section rises over the hero */}
-        <div ref={dimRef} className="absolute inset-0 z-30 bg-emerald-dark opacity-0 pointer-events-none" />
       </div>
     </section>
   );

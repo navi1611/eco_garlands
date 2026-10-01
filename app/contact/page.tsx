@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import { submitContactMessage, ContactFormData } from '@/lib/contact/mutations';
 import { useModal } from '@/components/modal/ModalContext';
 import { CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
+import ParchmentBackground from '@/components/ui/ParchmentBackground';
 
 export default function ContactPage() {
   const { openQuoteModal, openContactModal } = useModal();
@@ -69,7 +70,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="relative min-h-screen">
+      <ParchmentBackground />
+      <div className="relative z-10">
       <PageContainer
         badge="Direct Communication"
         title="Contact J The Divine Eco Valley"
@@ -325,6 +328,7 @@ export default function ContactPage() {
           </div>
         </div>
       </PageContainer>
+      </div>
     </div>
   );
 }

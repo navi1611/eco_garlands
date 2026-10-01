@@ -23,7 +23,7 @@ export default function ManufacturingProcess() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-cream border-t border-line">
+    <section className="py-16 sm:py-20 bg-white/45 border-t border-line/60">
       <Container>
         <SectionHeading
           badge="Our Principles"

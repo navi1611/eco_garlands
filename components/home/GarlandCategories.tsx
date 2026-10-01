@@ -81,7 +81,7 @@ export default function GarlandCategories() {
   const { openQuoteModal } = useModal();
 
   return (
-    <section className="py-24 lg:py-36 bg-white border-y border-line">
+    <section className="py-24 lg:py-36 bg-white/45 border-y border-line/60">
       <Container>
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <SectionHeading

@@ -4,6 +4,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductFilters from '@/components/products/ProductFilters';
 import { getProducts } from '@/lib/products/queries';
+import ParchmentBackground from '@/components/ui/ParchmentBackground';
 
 export const metadata: Metadata = {
   title: 'Natural Garland Catalog — Cardamom, Nuts & Spices',
@@ -34,7 +35,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   });
 
   return (
-    <div className="bg-cream">
+    <div className="relative">
+      <ParchmentBackground />
+      <div className="relative z-10">
       <PageContainer
         badge="Botanical Catalog"
         title="Our Handcrafted Garlands"
@@ -50,6 +53,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         {/* Server-Rendered Product Grid */}
         <ProductGrid products={products} />
       </PageContainer>
+      </div>
     </div>
   );
 }

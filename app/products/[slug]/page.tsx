@@ -7,6 +7,7 @@ import ProductGallery from '@/components/products/ProductGallery';
 import ProductDetails from '@/components/products/ProductDetails';
 import RelatedProducts from '@/components/products/RelatedProducts';
 import { getProductBySlug, getRelatedProducts } from '@/lib/products/queries';
+import ParchmentBackground from '@/components/ui/ParchmentBackground';
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -80,7 +81,9 @@ export default async function ProductDetailPage({
   };
 
   return (
-    <div className="bg-cream py-10 sm:py-16">
+    <div className="relative">
+      <ParchmentBackground />
+      <div className="relative z-10 py-10 sm:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -143,6 +146,7 @@ export default async function ProductDetailPage({
         {/* Related Products within same category */}
         <RelatedProducts products={related} category={product.category} />
       </Container>
+      </div>
     </div>
   );
 }

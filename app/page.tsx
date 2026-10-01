@@ -18,8 +18,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      {/* The rest of the page rises over the pinned hero like a curtain */}
-      <div className="relative z-10 -mt-[100svh] motion-reduce:mt-0 rounded-t-[2rem] overflow-clip bg-white shadow-[0_-30px_60px_-30px_rgba(11,34,25,0.28)]">
+      {/* The rest of the page scrolls over the garland, which stays fixed
+          behind it; sections use translucent backgrounds so it shows through */}
+      <div className="relative z-10 -mt-[100svh] motion-reduce:mt-0">
+        {/* Feathered lead-in so the content melts in instead of starting at a hard edge */}
+        <div aria-hidden className="h-40 bg-linear-to-b from-transparent to-white/45 pointer-events-none" />
         <BrandIntro />
         <CardamomStory />
         <GarlandCategories />

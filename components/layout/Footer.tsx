@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
+import LogoMark from '@/components/ui/Logo';
 
 const NAVIGATION = [
   { label: 'Home', href: '/' },
@@ -25,15 +26,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white text-emerald-dark border-t border-line mt-auto">
+    <footer className="relative z-10 bg-white text-emerald-dark border-t border-line mt-auto">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pt-20 pb-16 border-b border-line">
           {/* Brand */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-sage border border-sage-line flex items-center justify-center">
-                <span className="font-serif text-lg text-emerald-dark leading-none">J</span>
-              </div>
+              <LogoMark title="" className="w-12 h-12 shrink-0" />
               <span className="font-serif text-2xl tracking-[-0.01em]">J The Divine Eco Valley</span>
             </div>
             <p className="text-sm leading-[1.8] text-charcoal/60 max-w-sm">

@@ -70,7 +70,7 @@ export default function CardamomStory() {
   });
 
   return (
-    <section className="py-24 lg:py-36 bg-canvas">
+    <section className="py-24 lg:py-36 bg-canvas/35">
       <Container>
         <SectionHeading
           badge="Botanical Essence"
