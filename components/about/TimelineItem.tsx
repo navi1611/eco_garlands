@@ -61,7 +61,11 @@ export default function TimelineItem({ stage, index, isActive, nodeRef }: Timeli
             }`}
           >
             {/* Illustration sits on the card's outer side, next to its heading */}
-            <div className={`flex items-center gap-5 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+            <div
+              className={`flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5 ${
+                isEven ? 'md:flex-row-reverse' : ''
+              }`}
+            >
               <StageIllustration
                 step={stage.step}
                 active={isActive}
@@ -70,7 +74,7 @@ export default function TimelineItem({ stage, index, isActive, nodeRef }: Timeli
                 }`}
               />
               <div className="min-w-0">
-                <div className={`flex items-center gap-3 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                   <stage.icon className="w-4 h-4 text-emerald/70" strokeWidth={1.5} aria-hidden />
                   {stage.badge && (
                     <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium">

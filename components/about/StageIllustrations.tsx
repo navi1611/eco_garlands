@@ -25,10 +25,13 @@ const C = {
   ink: '#173828',
 };
 
+// Rounded so server and browser floating point always agree (no hydration mismatch)
+const n = (v: number) => Number(v.toFixed(2));
+
 // A small cardamom pod, centred on (x, y), rotated `r` degrees
 function Pod({ x, y, r = 0, s = 1, className }: { x: number; y: number; r?: number; s?: number; className?: string }) {
   return (
-    <g transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`} className={className}>
+    <g transform={`translate(${n(x)} ${n(y)}) rotate(${n(r)}) scale(${n(s)})`} className={className}>
       <ellipse rx="3.6" ry="6.4" fill={C.pod} />
       <path d="M0 -6 Q-1.6 0 0 6" stroke={C.podDark} strokeWidth=".7" fill="none" opacity=".7" />
       <ellipse cx="-1.3" cy="-1.8" rx=".9" ry="2.4" fill="#fff" opacity=".35" />
